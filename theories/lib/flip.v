@@ -91,19 +91,19 @@ Section specs.
 
   (** * Tape allocation  *)
   Lemma refines_allocB_tape_l K E t A :
-    (▷ (∀ α : loc, α ↪B [] -∗ REL fill K (of_val #lbl:α) << t @ E : A))%I
-    -∗ REL fill K allocB << t @ E : A.
+    (▷ (∀ α : loc, α ↪B [] -∗ REL fill K (of_val #lbl:α) ≾ t @ E : A))%I
+    -∗ REL fill K allocB ≾ t @ E : A.
   Proof. iIntros "?". by iApply refines_alloctape_l. Qed.
 
   Lemma refines_allocB_tape_r E K t A :
-    (∀ α : loc, α ↪ₛB [] -∗ REL t << fill K (of_val #lbl:α) @ E : A)%I
-    -∗ REL t << fill K allocB @ E : A.
+    (∀ α : loc, α ↪ₛB [] -∗ REL t ≾ fill K (of_val #lbl:α) @ E : A)%I
+    -∗ REL t ≾ fill K allocB @ E : A.
   Proof. iIntros "?". by iApply refines_alloctape_r. Qed.
 
   (** * Unlabelled flip *)
   Lemma refines_flip_l E K t A :
-     ▷ (∀ (b : bool), REL fill K (of_val #b) << t @ E : A)
-    -∗ REL fill K flip << t @ E : A.
+     ▷ (∀ (b : bool), REL fill K (of_val #b) ≾ t @ E : A)
+    -∗ REL fill K flip ≾ t @ E : A.
   Proof.
     iIntros "Hlog".
     iApply refines_wp_l.
@@ -116,8 +116,8 @@ Section specs.
   (** * Labelled flip  *)
   Lemma refines_flipL_l E K α b bs t A :
     (▷ α ↪B (b :: bs) ∗
-     ▷ (α ↪B bs -∗ REL fill K (of_val #b) << t @ E : A))
-    -∗ REL fill K (flipL #lbl:α) << t @ E : A.
+     ▷ (α ↪B bs -∗ REL fill K (of_val #b) ≾ t @ E : A))
+    -∗ REL fill K (flipL #lbl:α) ≾ t @ E : A.
   Proof.
     iIntros "[Hα Hlog]".
     iApply refines_wp_l.
@@ -126,8 +126,8 @@ Section specs.
 
   Lemma refines_flipL_r E K α b bs t A :
     α ↪ₛB (b :: bs)
-    -∗ (α ↪ₛB bs -∗ REL t << fill K (of_val #b) @ E : A)
-    -∗ REL t << (fill K (flipL #lbl:α)) @ E : A.
+    -∗ (α ↪ₛB bs -∗ REL t ≾ fill K (of_val #b) @ E : A)
+    -∗ REL t ≾ (fill K (flipL #lbl:α)) @ E : A.
   Proof.
     iIntros "Hα Hlog".
     iApply refines_step_r.
@@ -138,8 +138,8 @@ Section specs.
 
   Lemma refines_flipL_empty_l K E α A e :
     α ↪B [] ∗
-      (∀ (b : bool), α ↪B [] -∗ REL fill K (of_val #b) << e @ E : A)
-    ⊢ REL fill K (flipL #lbl:α) << e @ E : A.
+      (∀ (b : bool), α ↪B [] -∗ REL fill K (of_val #b) ≾ e @ E : A)
+    ⊢ REL fill K (flipL #lbl:α) ≾ e @ E : A.
   Proof.
     iIntros "[Hα H]".
     iApply refines_wp_l.
@@ -150,8 +150,8 @@ Section specs.
     nclose specN ⊆ E →
     to_val e = None →
     α ↪ₛB [] ∗
-      (∀ b : bool, α ↪ₛB [] -∗ REL e << fill K (of_val #b) @ E : A)
-    ⊢ REL e << fill K (flipL #lbl:α) @ E : A.
+      (∀ b : bool, α ↪ₛB [] -∗ REL e ≾ fill K (of_val #b) @ E : A)
+    ⊢ REL e ≾ fill K (flipL #lbl:α) @ E : A.
   Proof.
     iIntros (? ev) "[Hα H]". rewrite /flip/flipL.
     rel_pures_r.
@@ -198,8 +198,8 @@ Section specs.
 
   Lemma refines_couple_flip_flip f `{Bij bool bool f} K K' E A :
     nclose specN ⊆ E →
-    ▷ (∀ b : bool, REL fill K (of_val #b) << fill K' (of_val #(f b)) @ E : A)
-    ⊢ REL fill K flip << fill K' flip @ E : A.
+    ▷ (∀ b : bool, REL fill K (of_val #b) ≾ fill K' (of_val #(f b)) @ E : A)
+    ⊢ REL fill K flip ≾ fill K' flip @ E : A.
   Proof.
     rewrite refines_eq /refines_def.
     iIntros (?) "Hcnt %? ? /=".
@@ -234,8 +234,8 @@ Section specs.
   Lemma refines_couple_bool_tape_tape f `{Bij bool bool f} E e1 e2 A α αₛ bs bsₛ :
     to_val e1 = None →
     (▷ αₛ ↪ₛB bsₛ ∗ ▷ α ↪B bs ∗
-       (∀ b, αₛ ↪ₛB (bsₛ ++ [f b]) ∗ α ↪B (bs ++ [b]) -∗ REL e1 << e2 @ E : A))
-    ⊢ REL e1 << e2 @ E : A.
+       (∀ b, αₛ ↪ₛB (bsₛ ++ [f b]) ∗ α ↪B (bs ++ [b]) -∗ REL e1 ≾ e2 @ E : A))
+    ⊢ REL e1 ≾ e2 @ E : A.
   Proof.
     iIntros (?) "(Hαs & Hα & Hlog)".
     iApply (refines_couple_tapes _ (fn_bool_to_fin f)); [done|iFrame].
@@ -302,8 +302,8 @@ Section specs.
     nclose specN ⊆ E →
     to_val e = None →
     ▷ α ↪B bs ∗
-      (∀ b, α ↪B (bs ++ [b]) -∗ REL e << fill K' (of_val #b) @ E : A)
-    ⊢ REL e << fill K' flip @ E : A.
+      (∀ b, α ↪B (bs ++ [b]) -∗ REL e ≾ fill K' (of_val #b) @ E : A)
+    ⊢ REL e ≾ fill K' flip @ E : A.
   Proof.
     iIntros (??) "[Hα Hcnt]". rewrite /flip/flipL.
     rel_pures_r.
@@ -342,8 +342,8 @@ Section specs.
 
   Lemma refines_couple_flip_tape K E α A bs e :
     ▷ α ↪ₛB bs ∗
-      ▷ (∀ b, α ↪ₛB (bs ++ [b]) -∗ REL fill K (of_val #b) << e @ E : A)
-    ⊢ REL fill K flip << e @ E : A.
+      ▷ (∀ b, α ↪ₛB (bs ++ [b]) -∗ REL fill K (of_val #b) ≾ e @ E : A)
+    ⊢ REL fill K flip ≾ e @ E : A.
   Proof.
     iIntros "[Hαs Hcnt]". rewrite /flip/flipL.
     rel_pures_l.
@@ -364,8 +364,8 @@ Section specs.
   Lemma refines_couple_flipL_flip K K' E α A :
     nclose specN ⊆ E →
     ▷ α ↪B [] ∗
-      ▷ (∀ b : bool, α ↪B [] -∗ REL fill K (of_val #b) << fill K' (of_val #b) @ E : A)
-    ⊢ REL fill K (flipL #lbl:α) << fill K' flip @ E : A.
+      ▷ (∀ b : bool, α ↪B [] -∗ REL fill K (of_val #b) ≾ fill K' (of_val #b) @ E : A)
+    ⊢ REL fill K (flipL #lbl:α) ≾ fill K' flip @ E : A.
   Proof.
     iIntros (?) "(Hα & H)".
     rel_pures_l.
@@ -381,8 +381,8 @@ Section specs.
 
   Lemma refines_couple_flip_flipL K K' E α A :
     ▷ α ↪ₛB [] ∗
-      ▷ (∀ b : bool, α ↪ₛB [] -∗ REL fill K (of_val #b) << fill K' (of_val #b) @ E : A)
-    ⊢ REL fill K flip << fill K' (flipL #lbl:α) @ E : A.
+      ▷ (∀ b : bool, α ↪ₛB [] -∗ REL fill K (of_val #b) ≾ fill K' (of_val #b) @ E : A)
+    ⊢ REL fill K flip ≾ fill K' (flipL #lbl:α) @ E : A.
   Proof.
     iIntros "(Hα & H)".
     iApply refines_couple_flip_tape.

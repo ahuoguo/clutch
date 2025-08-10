@@ -12,8 +12,8 @@ Section counterexample.
   Definition refines_tape_unsound :=
     ∀ K E (A : lrel Σ) α b bs e',
     α ↪B (b :: bs) ∗
-    (α ↪B bs -∗  REL fill K (of_val #b) << e' @ E : A)
-    ⊢ REL fill K flip << e' @ E : A.
+    (α ↪B bs -∗  REL fill K (of_val #b) ≾ e' @ E : A)
+    ⊢ REL fill K flip ≾ e' @ E : A.
 
   (** [flip_ors] return [true] with probability 3/4, false with 1/4 *)
   Definition flip_ors : expr :=
@@ -26,7 +26,7 @@ Section counterexample.
   Lemma counterexample α1 α2 :
     refines_tape_unsound →
     α1 ↪B [] ∗ α2 ↪B []
-    ⊢ REL flip << flip_ors  : lrel_bool.
+    ⊢ REL flip ≾ flip_ors  : lrel_bool.
   Proof.
     iIntros (refines_tape_unsound) "[Hα1 Hα2]". rewrite /flip_ors.
     rel_apply (refines_couple_tape_flip _ _ α1); [done|iFrame].

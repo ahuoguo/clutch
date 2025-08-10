@@ -276,7 +276,7 @@ Section bin_log_related.
              (e e' : expr) (τ : type) : iProp Σ :=
     (∀ vs, ⟦ (λ τ, interp τ Δ) <$> Γ ⟧* vs -∗
            REL (subst_map (fst <$> vs) e)
-            << (subst_map (snd <$> vs) e') @ E : (interp τ Δ))%I.
+            ≾ (subst_map (snd <$> vs) e') @ E : (interp τ Δ))%I.
 
 End bin_log_related.
 

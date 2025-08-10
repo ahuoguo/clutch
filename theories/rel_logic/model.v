@@ -245,16 +245,16 @@ Section semtypes_properties.
 
 End semtypes_properties.
 
-Notation "'REL' e1 '<<' e2 '@' E ':' A" :=
+Notation "'REL' e1 '≾' e2 '@' E ':' A" :=
   (refines E e1%E e2%E (A)%lrel)
   (at level 100, E at next level, e1, e2 at next level,
    A at level 200,
-   format "'[hv' 'REL'  e1  '/' '<<'  '/  ' e2  '@'  E  :  A ']'").
-Notation "'REL' e1 '<<' t ':' A" :=
+   format "'[hv' 'REL'  e1  '/' '≾'  '/  ' e2  '@'  E  :  A ']'").
+Notation "'REL' e1 '≾' t ':' A" :=
   (refines ⊤ e1%E t%E (A)%lrel)
   (at level 100, e1, t at next level,
    A at level 200,
-   format "'[hv' 'REL'  e1  '/' '<<'  '/  ' t  :  A ']'").
+   format "'[hv' 'REL'  e1  '/' '≾'  '/  ' t  :  A ']'").
 
 (** Properties of the relational interpretation *)
 Section related_facts.
@@ -295,8 +295,8 @@ Section related_facts.
   Qed.
 
   Lemma refines_na_alloc P N E e1 e2 A :
-    (▷ P ∗ (na_invP N P -∗ REL e1 << e2 @ E : A))
-    ⊢ REL e1 << e2 @ E : A.
+    (▷ P ∗ (na_invP N P -∗ REL e1 ≾ e2 @ E : A))
+    ⊢ REL e1 ≾ e2 @ E : A.
   Proof.
     iIntros "[HP Hcont]".
     iMod (na_inv_alloc with "HP").
@@ -306,8 +306,8 @@ Section related_facts.
   Lemma refines_na_inv P E N e1 e2 A :
     ↑N ⊆ E →
     na_invP N P ∗
-    (▷ P ∗ na_closeP P N E -∗ REL e1 << e2 @ (E ∖ ↑N) : A)%I
-    ⊢ REL e1 << e2 @ E : A.
+    (▷ P ∗ na_closeP P N E -∗ REL e1 ≾ e2 @ (E ∖ ↑N) : A)%I
+    ⊢ REL e1 ≾ e2 @ E : A.
   Proof.
     iIntros (NE) "[Hinv IH]".
     rewrite refines_eq /refines_def.
@@ -319,8 +319,8 @@ Section related_facts.
 
   Lemma refines_na_close P E N e1 e2 A :
     (▷ P ∗ na_closeP P N E ∗
-    REL e1 << e2 @ E : A)
-    ⊢ REL e1 << e2 @ (E ∖ ↑N) : A.
+    REL e1 ≾ e2 @ E : A)
+    ⊢ REL e1 ≾ e2 @ (E ∖ ↑N) : A.
   Proof.
     iIntros "(HP & Hclose & IH)".
     rewrite refines_eq /refines_def.
@@ -336,10 +336,10 @@ Section monadic.
   Implicit Types e : expr.
 
   Lemma refines_bind K K' E A A' e e' :
-    (REL e << e' @ E : A) -∗
+    (REL e ≾ e' @ E : A) -∗
     (∀ v v', A v v' -∗
-      REL fill K (of_val v) << (fill K' (of_val v')) : A') -∗
-    REL fill K e << fill K' e' @ E : A'.
+      REL fill K (of_val v) ≾ (fill K' (of_val v')) : A') -∗
+    REL fill K e ≾ fill K' e' @ E : A'.
   Proof.
     iIntros "Hm Hf".
     rewrite refines_eq /refines_def /refines_right.
@@ -357,7 +357,7 @@ Section monadic.
     IntoVal e1 v1 →
     IntoVal e2 v2 →
     (na_ownP E ={⊤}=∗ na_ownP ⊤ ∗ A v1 v2) -∗
-    REL e1 << e2 @ E : A.
+    REL e1 ≾ e2 @ E : A.
   Proof.
     rewrite /IntoVal.
     rewrite refines_eq /refines_def.
@@ -370,7 +370,7 @@ Section monadic.
     IntoVal e1 v1 →
     IntoVal e2 v2 →
     (|={⊤}=> na_ownP (⊤ ∖ E) ∗ A v1 v2) -∗
-    REL e1 << e2 @ E : A.
+    REL e1 ≾ e2 @ E : A.
   Proof.
     rewrite /IntoVal.
     rewrite refines_eq /refines_def.
@@ -389,7 +389,7 @@ Section monadic.
     IntoVal e1 v1 →
     IntoVal e2 v2 →
     (|={⊤}=> A v1 v2) -∗
-    REL e1 << e2 : A.
+    REL e1 ≾ e2 : A.
   Proof.
     iIntros (hv1 hv2) "HA".
     iApply refines_ret_na.

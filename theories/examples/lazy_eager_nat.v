@@ -37,9 +37,9 @@ Section logical_ref.
 
   Definition coinN := nroot.@"coins".
 
-  (** lazy << lazy_with_tape << eager *)
+  (** lazy ≾ lazy_with_tape ≾ eager *)
   Lemma lazy_lazy_with_tape_rel :
-    ⊢ REL lazy << lazy_with_tape : lrel_nat → () → lrel_nat.
+    ⊢ REL lazy ≾ lazy_with_tape : lrel_nat → () → lrel_nat.
   Proof.
     rewrite /lazy /lazy_with_tape.
     rel_arrow_val.
@@ -83,7 +83,7 @@ Section logical_ref.
   Qed.
 
   Lemma lazy_with_tape_eager_rel :
-    ⊢ REL lazy_with_tape << eager : lrel_nat → () → lrel_nat.
+    ⊢ REL lazy_with_tape ≾ eager : lrel_nat → () → lrel_nat.
   Proof.
     rewrite /lazy_with_tape /eager.
     rel_arrow_val.
@@ -116,9 +116,9 @@ Section logical_ref.
       iModIntro. iRight. iFrame.
   Qed.
 
-  (** eager << lazy_with_tape << lazy *)
+  (** eager ≾ lazy_with_tape ≾ lazy *)
   Lemma eager_lazy_with_tape_rel :
-    ⊢ REL eager << lazy_with_tape : lrel_nat → () → lrel_nat.
+    ⊢ REL eager ≾ lazy_with_tape : lrel_nat → () → lrel_nat.
   Proof.
     rewrite /lazy_with_tape /eager.
     rel_arrow_val.
@@ -152,7 +152,7 @@ Section logical_ref.
   Qed.
 
   Lemma lazy_with_tape_lazy_rel :
-    ⊢ REL lazy_with_tape << lazy : lrel_nat → () → lrel_nat.
+    ⊢ REL lazy_with_tape ≾ lazy : lrel_nat → () → lrel_nat.
   Proof.
     rewrite /lazy /lazy_with_tape.
     rel_arrow_val.

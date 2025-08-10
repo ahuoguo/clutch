@@ -30,7 +30,7 @@ Proof.
 Qed.
 
 Lemma refines_sound Σ `{Hpre : !clutchRGpreS Σ} (e e': expr) τ :
-  (∀ `{clutchRGS Σ} Δ, ⊢ REL e << e' : (interp τ Δ)) →
+  (∀ `{clutchRGS Σ} Δ, ⊢ REL e ≾ e' : (interp τ Δ)) →
   ∅ ⊨ e ≤ctx≤ e' : τ.
 Proof.
   intros Hlog. eapply (refines_sound_open Σ).

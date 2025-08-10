@@ -389,7 +389,7 @@ Section rng.
   Definition rngN := nroot.@"rng".
 
   Lemma hash_bounded_refinement :
-    ⊢ REL init_hash_rng << init_bounded_rng : lrel_unit → (lrel_unit → lrel_bool).
+    ⊢ REL init_hash_rng ≾ init_bounded_rng : lrel_unit → (lrel_unit → lrel_bool).
   Proof.
     rel_arrow_val.
     iIntros (??) "(->&->)".
@@ -419,7 +419,7 @@ Section rng.
   Qed.
 
   Lemma bounded_hash_refinement :
-    ⊢ REL init_bounded_rng << init_hash_rng : lrel_unit → (lrel_unit → lrel_bool).
+    ⊢ REL init_bounded_rng ≾ init_hash_rng : lrel_unit → (lrel_unit → lrel_bool).
   Proof.
     rel_arrow_val.
     iIntros (??) "(->&->)".

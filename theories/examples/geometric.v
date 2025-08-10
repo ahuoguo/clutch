@@ -10,7 +10,7 @@ Section logical_ref.
   Context `{!clutchRGS Σ}.
 
   Lemma true_false :
-    ⊢ REL geo_true << geo_false : lrel_int → lrel_int.
+    ⊢ REL geo_true ≾ geo_false : lrel_int → lrel_int.
   Proof with rel_pures_l ; rel_pures_r.
     auto...
     iLöb as "HH".
@@ -28,7 +28,7 @@ Section logical_ref.
   Qed.
 
   Lemma false_true :
-    ⊢ REL geo_false << geo_true : lrel_int → lrel_int.
+    ⊢ REL geo_false ≾ geo_true : lrel_int → lrel_int.
   Proof with rel_pures_l ; rel_pures_r.
     auto...
     iLöb as "HH".

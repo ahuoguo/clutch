@@ -67,7 +67,7 @@ Section proofs.
     in ("update", "read").
 
   Lemma lazy_alt_eager :
-    ⊢ REL lazy_alt << eager
+    ⊢ REL lazy_alt ≾ eager
       : (() → ()) * (() → lrel_bool).
   Proof with try rel_pures_l ; try rel_pures_r.
     unfold lazy_alt, eager.
@@ -129,7 +129,7 @@ Section proofs.
   Qed.
 
   Lemma lazy_lazy_alt :
-    ⊢ REL lazy << lazy_alt
+    ⊢ REL lazy ≾ lazy_alt
     : (() → ()) * (() → lrel_bool).
   Proof with try rel_pures_l ; try rel_pures_r.
     unfold lazy_alt, lazy.

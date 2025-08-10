@@ -63,7 +63,7 @@ Section proofs.
   Definition bisimN := nroot.@"bisim".
 
   Lemma H_with_tape_K_rel :
-    ⊢ REL H_with_tape << K : lrel_unit → lrel_bool.
+    ⊢ REL H_with_tape ≾ K : lrel_unit → lrel_bool.
   Proof.
     rewrite /H_with_tape /K.
     rel_alloc_l x as "x". rel_alloc_r y as "y".
@@ -143,7 +143,7 @@ Section proofs.
   Qed.
 
   Lemma H_H_with_tape_rel :
-    ⊢ REL H << H_with_tape : lrel_unit → lrel_bool.
+    ⊢ REL H ≾ H_with_tape : lrel_unit → lrel_bool.
   Proof.
     rewrite /H_with_tape /H.
     rel_alloc_l x as "x". rel_alloc_r y as "y".
@@ -196,7 +196,7 @@ Section proofs.
   Qed.
 
   Lemma K_H_with_tape_rel :
-    ⊢ REL K << H_with_tape : lrel_unit → lrel_bool.
+    ⊢ REL K ≾ H_with_tape : lrel_unit → lrel_bool.
   Proof.
     rewrite /H_with_tape /K.
     rel_alloc_l x as "x". rel_alloc_r y as "y".
@@ -256,7 +256,7 @@ Section proofs.
   Qed.
 
   Lemma H_with_tape_H_rel :
-    ⊢ REL H_with_tape << H : lrel_unit → lrel_bool.
+    ⊢ REL H_with_tape ≾ H : lrel_unit → lrel_bool.
   Proof.
     rewrite /H_with_tape /H.
     rel_alloc_l x as "x". rel_alloc_r y as "y".

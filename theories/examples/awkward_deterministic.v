@@ -17,9 +17,9 @@ Section proofs.
 
   Lemma refinement1 :
     ⊢ REL
-      let: "x" := ref #1 in
-      (λ: "f", "f" #();; !"x")
-    <<
+     (let: "x" := ref #1 in
+      (λ: "f", "f" #();; !"x"))
+    ≾
       (λ: "f", "f" #();; #1)
     : (() → ()) → lrel_int.
   Proof.
@@ -63,9 +63,9 @@ Section proofs.
 
   Lemma refinement2 `{oneshotG Σ} :
     ⊢ REL
-      let: "x" := ref #0 in
-      (λ: "f", "x" <- #1;; "f" #();; !"x")
-    <<
+     (let: "x" := ref #0 in
+      (λ: "f", "x" <- #1;; "f" #();; !"x"))
+    ≾
       (let: "x" := ref #1 in
        λ: "f", "f" #();; !"x")
     : (() → ()) → lrel_int.
@@ -118,7 +118,7 @@ Section proofs.
   Lemma refinement25 `{oneshotG Σ} :
     ⊢ REL
       (λ: "f", "f" #();; #1)
-    <<
+    ≾
       (let: "x" := ref #0 in
        (λ: "f", "x" <- #1;; "f" #();; !"x"))
     : (() → ()) → lrel_int.

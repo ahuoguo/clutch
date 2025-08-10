@@ -10,14 +10,14 @@ Section proofs.
      argument. Nothing probabilistic, just recursion and state. *)
   Lemma id_rec_det : ⊢ REL
                    (λ: "x", "x")
-                   <<
+                   ≾
                    (let: "c" := ref #0 in
                     (rec: "f" "x" := if: !"c" = #1 then "x" else "c" <- #1 ;; "f" "x"))
       : (lrel_bool → lrel_bool).
   Proof with try rel_pures_l ; try rel_pures_r.
     rel_alloc_r c as "c"...
     set (P := (REL (λ: "x", "x")%V
-                 <<
+                 ≾
                  (rec: "f" "x" := if: ! #c = #1 then "x" else #c <- #1;; "f" "x")%V :
                 lrel_bool → lrel_bool)).
     iApply (refines_na_alloc (c ↦ₛ #0 ∨ ((c ↦ₛ #1) ∗ P)) idrecN).
@@ -56,9 +56,9 @@ Section proofs.
 
   Lemma rec_id :
     ⊢ REL
-      let: "α" := allocB in
-       (rec: "f" "x" := if: flipL "α" then "x" else "f" "x")
-    <<
+      (let: "α" := allocB in
+       (rec: "f" "x" := if: flipL "α" then "x" else "f" "x"))
+    ≾
        (λ: "x", "x")
     : (lrel_bool → lrel_bool).
   Proof with try rel_pures_l ; try rel_pures_r.
@@ -82,7 +82,7 @@ Section proofs.
   Lemma id_rec :
     ⊢ REL
        (λ: "x", "x")
-    <<
+    ≾
       (let: "c" := ref #0 in
        (rec: "f" "x" := if: !"c" = #1 then "x" else "c" <- #1 ;; "f" "x"))
     : (lrel_bool → lrel_bool).

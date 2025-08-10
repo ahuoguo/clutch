@@ -1208,7 +1208,7 @@ Section eager_hash.
   Qed.
 
   Lemma eager_lazy_refinement (max: nat) :
-    ⊢ REL eager_init_hash #max << init_hash #max : lrel_int → lrel_bool.
+    ⊢ REL eager_init_hash #max ≾ init_hash #max : lrel_int → lrel_bool.
   Proof.
     rewrite refines_eq. iIntros (K) "HK Hown".
     iApply wp_fupd.
@@ -1245,7 +1245,7 @@ Section eager_hash.
   Qed.
 
   Lemma lazy_eager_refinement (max: nat) :
-    ⊢ REL init_hash #max << eager_init_hash #max : lrel_int → lrel_bool.
+    ⊢ REL init_hash #max ≾ eager_init_hash #max : lrel_int → lrel_bool.
   Proof.
     rewrite refines_eq. iIntros (K) "HK Hown".
     iApply wp_fupd.

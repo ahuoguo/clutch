@@ -19,9 +19,9 @@ Section compatibility.
 
 
   Lemma refines_pair e1 e2 e1' e2' A B :
-    (REL e1 << e1' : A) -∗
-    (REL e2 << e2' : B) -∗
-    REL (e1, e2) << (e1', e2') : A * B.
+    (REL e1 ≾ e1' : A) -∗
+    (REL e2 ≾ e2' : B) -∗
+    REL (e1, e2) ≾ (e1', e2') : A * B.
   Proof.
     iIntros "IH1 IH2".
     rel_bind_ap e2 e2' "IH2" v2 v2' "Hvv2".
@@ -31,8 +31,8 @@ Section compatibility.
   Qed.
 
   Lemma refines_injl e e' τ1 τ2 :
-    (REL e << e' : τ1) -∗
-    REL InjL e << InjL e' : τ1 + τ2.
+    (REL e ≾ e' : τ1) -∗
+    REL InjL e ≾ InjL e' : τ1 + τ2.
   Proof.
     iIntros "IH".
     rel_bind_ap e e' "IH" v v' "Hvv".
@@ -41,8 +41,8 @@ Section compatibility.
   Qed.
 
   Lemma refines_injr e e' τ1 τ2 :
-    (REL e << e' : τ2) -∗
-    REL InjR e << InjR e' : τ1 + τ2.
+    (REL e ≾ e' : τ2) -∗
+    REL InjR e ≾ InjR e' : τ1 + τ2.
   Proof.
     iIntros "IH".
     rel_bind_ap e e' "IH" v v' "Hvv".
@@ -51,9 +51,9 @@ Section compatibility.
   Qed.
 
   Lemma refines_app e1 e2 e1' e2' A B :
-    (REL e1 << e1' : A → B) -∗
-    (REL e2 << e2' : A) -∗
-    REL App e1 e2 << App e1' e2' : B.
+    (REL e1 ≾ e1' : A → B) -∗
+    (REL e2 ≾ e2' : A) -∗
+    REL App e1 e2 ≾ App e1' e2' : B.
   Proof.
     iIntros "IH1 IH2".
     rel_bind_ap e2 e2' "IH2" v v' "Hvv".
@@ -62,9 +62,9 @@ Section compatibility.
   Qed.
 
   Lemma refines_seq A e1 e2 e1' e2' B :
-    (REL e1 << e1' : A) -∗
-    (REL e2 << e2' : B) -∗
-    REL (e1;; e2) << (e1';; e2') : B.
+    (REL e1 ≾ e1' : A) -∗
+    (REL e2 ≾ e2' : B) -∗
+    REL (e1;; e2) ≾ (e1';; e2') : B.
   Proof.
     iIntros "IH1 IH2".
     rel_bind_ap e1 e1' "IH1" v v' "#Hvv".
@@ -73,8 +73,8 @@ Section compatibility.
   Qed.
 
   Lemma refines_pack (A : lrel Σ) e e' (C : lrel Σ → lrel Σ) :
-    (REL e << e' : C A) -∗
-    REL e << e' : ∃ A, C A.
+    (REL e ≾ e' : C A) -∗
+    REL e ≾ e' : ∃ A, C A.
   Proof.
     iIntros "H".
     rel_bind_ap e e' "H" v v' "Hvv".
@@ -83,8 +83,8 @@ Section compatibility.
   Qed.
 
   Lemma refines_forall e e' (C : lrel Σ → lrel Σ) :
-    □ (∀ A, REL e << e' : C A) -∗
-    REL (λ: <>, e)%V << (λ: <>, e')%V : ∀ A, C A.
+    □ (∀ A, REL e ≾ e' : C A) -∗
+    REL (λ: <>, e)%V ≾ (λ: <>, e')%V : ∀ A, C A.
   Proof.
     iIntros "#H".
     rel_values. iModIntro.
@@ -93,9 +93,9 @@ Section compatibility.
   Qed.
 
   Lemma refines_store e1 e2 e1' e2' A :
-    (REL e1 << e1' : ref A) -∗
-    (REL e2 << e2' : A) -∗
-    REL e1 <- e2 << e1' <- e2' : ().
+    (REL e1 ≾ e1' : ref A) -∗
+    (REL e2 ≾ e2' : A) -∗
+    REL e1 <- e2 ≾ e1' <- e2' : ().
   Proof.
     iIntros "IH1 IH2".
     rel_bind_ap e2 e2' "IH2" w w' "IH2".
@@ -116,8 +116,8 @@ Section compatibility.
   Qed.
 
   Lemma refines_load e e' A :
-    (REL e << e' : ref A) -∗
-    REL !e << !e' : A.
+    (REL e ≾ e' : ref A) -∗
+    REL !e ≾ !e' : A.
   Proof.
     iIntros "H".
     rel_bind_ap e e' "H" v v' "H".
@@ -137,9 +137,9 @@ Section compatibility.
   Qed.
 
   Lemma refines_rand_tape e1 e1' e2 e2' :
-    (REL e1 << e1' : lrel_nat) -∗
-    (REL e2 << e2' : lrel_tape) -∗
-    REL rand e1 from e2 << rand e1' from e2' : lrel_nat.
+    (REL e1 ≾ e1' : lrel_nat) -∗
+    (REL e2 ≾ e2' : lrel_tape) -∗
+    REL rand e1 from e2 ≾ rand e1' from e2' : lrel_nat.
   Proof.
     iIntros "IH1 IH2".
     rel_bind_ap e2 e2' "IH2" w w' "IH2".
@@ -167,8 +167,8 @@ Section compatibility.
   Qed.
 
   Lemma refines_rand_unit e e' :
-    (REL e << e' : lrel_nat) -∗
-    REL rand e from #() << rand e' from #() : lrel_nat.
+    (REL e ≾ e' : lrel_nat) -∗
+    REL rand e from #() ≾ rand e' from #() : lrel_nat.
   Proof.
     iIntros "H".
     rel_bind_ap e e' "H" v v' "H".

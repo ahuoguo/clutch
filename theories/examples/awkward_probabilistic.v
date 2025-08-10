@@ -28,7 +28,7 @@ Section proofs.
       (let: "α" := allocB in
        let: "callable" := ref #true in
        (λ: "f", if: ! "callable" then "callable" <- #false ;; "f" #() ;; SOME (flipL "α") else NONE))
-    <<
+    ≾
       (let: "x" := ref flip in
        let: "callable" := ref #true in
        (λ: "f", if: ! "callable" then "callable" <- #false ;; "f" #() ;; SOME (!"x") else NONE))
@@ -74,7 +74,7 @@ Section proofs.
       (λ: "f", let: "α" := allocB in
                "f" #() ;;
                flipL "α")
-    <<
+    ≾
       (λ: "f", let: "β" := allocB in
                let: "b" := flipL "β" in
                let: "x" := ref "b" in
@@ -149,7 +149,7 @@ Section proofs.
 
   (* If we try to do the proof directly with our bare hands we get stuck. *)
   Lemma refinement_prob_resample :
-    ⊢ REL call_flip << store_xor : (() → ()) → (lrel_bool).
+    ⊢ REL call_flip ≾ store_xor : (() → ()) → (lrel_bool).
   Proof with try rel_pures_l ; try rel_pures_r ; try foldxor.
     rewrite /call_flip /store_xor... rel_alloc_r x as "Hx"...
     iApply (refines_na_alloc (∃ b : bool, x ↦ₛ #b) awkwardN).
@@ -190,7 +190,7 @@ Section proofs.
   the call to `f`. This will allow us to pick a coupling depending on the value
   of `x` *after* the call to `f` in the next refinement. *)
   Lemma store_xor_late_store_xor :
-    ⊢ REL store_xor_late << store_xor : (() → ()) → (lrel_bool).
+    ⊢ REL store_xor_late ≾ store_xor : (() → ()) → (lrel_bool).
   Proof with try rel_pures_l ; try rel_pures_r ; try foldxor.
     rewrite /store_xor /store_xor_late...
     rel_alloc_l x as "x"... rel_alloc_r x' as "x'"...
@@ -227,7 +227,7 @@ Section proofs.
   Qed.
 
   Lemma store_ignore_store_xor_late :
-    ⊢ REL store_ignore << store_xor_late : (() → ()) → (lrel_bool).
+    ⊢ REL store_ignore ≾ store_xor_late : (() → ()) → (lrel_bool).
   Proof with try rel_pures_l ; try rel_pures_r ; try foldxor.
     rewrite /store_xor_late /store_ignore...
     rel_alloc_l x as "x"... rel_alloc_r x' as "x'"...
@@ -261,7 +261,7 @@ Section proofs.
   Qed.
 
   Lemma call_flip_store_ignore :
-    ⊢ REL call_flip << store_ignore : (() → ()) → (lrel_bool).
+    ⊢ REL call_flip ≾ store_ignore : (() → ()) → (lrel_bool).
   Proof with try rel_pures_l ; try rel_pures_r ; try foldxor.
     rewrite /store_ignore /call_flip...
     rel_alloc_r x as "x"...
@@ -290,7 +290,7 @@ Section proofs.
   (* The opposite direction of the last three refinements. The proofs are
   essentially the same. *)
   Lemma store_xor_store_xor_late :
-    ⊢ REL store_xor << store_xor_late : (() → ()) → (lrel_bool).
+    ⊢ REL store_xor ≾ store_xor_late : (() → ()) → (lrel_bool).
   Proof with try rel_pures_l ; try rel_pures_r ; try foldxor.
     rewrite /store_xor /store_xor_late...
     rel_alloc_l x as "x"... rel_alloc_r x' as "x'"...
@@ -327,7 +327,7 @@ Section proofs.
   Qed.
 
   Lemma store_xor_late_store_ignore :
-    ⊢ REL store_xor_late << store_ignore : (() → ()) → (lrel_bool).
+    ⊢ REL store_xor_late ≾ store_ignore : (() → ()) → (lrel_bool).
   Proof with try rel_pures_l ; try rel_pures_r ; try foldxor.
     rewrite /store_xor_late /store_ignore...
     rel_alloc_l x as "x"... rel_alloc_r x' as "x'"...
@@ -363,7 +363,7 @@ Section proofs.
   Qed.
 
   Lemma store_ignore_call_flip :
-    ⊢ REL store_ignore << call_flip : (() → ()) → (lrel_bool).
+    ⊢ REL store_ignore ≾ call_flip : (() → ()) → (lrel_bool).
   Proof with try rel_pures_l ; try rel_pures_r ; try foldxor.
     rewrite /store_ignore /call_flip...
     rel_alloc_l x as "x"...

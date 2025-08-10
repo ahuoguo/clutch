@@ -11,14 +11,14 @@ From clutch.rel_logic Require Export spec_tactics.
 (** * General-purpose tactics *)
 Lemma tac_rel_bind_l `{!clutchRGS Σ} e' K ℶ E e t A :
   e = fill K e' →
-  envs_entails ℶ (REL fill K e' << t @ E : A) →
-  envs_entails ℶ (REL e << t @ E : A).
+  envs_entails ℶ (REL fill K e' ≾ t @ E : A) →
+  envs_entails ℶ (REL e ≾ t @ E : A).
 Proof. intros. subst. assumption. Qed.
 
 Lemma tac_rel_bind_r `{!clutchRGS Σ} (t' : expr) K ℶ E e t A :
   t = fill K t' →
-  envs_entails ℶ (REL e << fill K t' @ E : A) →
-  envs_entails ℶ (REL e << t @ E : A).
+  envs_entails ℶ (REL e ≾ fill K t' @ E : A) →
+  envs_entails ℶ (REL e ≾ t @ E : A).
 Proof. intros. subst. assumption. Qed.
 
 Tactic Notation "rel_bind_l" open_constr(efoc) :=
@@ -144,8 +144,8 @@ Lemma tac_rel_pure_l `{!clutchRGS Σ} K e1 ℶ ℶ' E e e2 eres ϕ n m t A :
   m = n ∨ m = 0 →
   MaybeIntoLaterNEnvs m ℶ ℶ' →
   eres = fill K e2 →
-  envs_entails ℶ' (REL eres << t @ E : A) →
-  envs_entails ℶ (REL e << t @ E : A).
+  envs_entails ℶ' (REL eres ≾ t @ E : A) →
+  envs_entails ℶ (REL e ≾ t @ E : A).
 Proof.
   rewrite envs_entails_unseal.
   intros Hfill Hpure Hϕ Hm ?? Hp. subst.
@@ -160,8 +160,8 @@ Lemma tac_rel_pure_r `{!clutchRGS Σ} K e1 ℶ E (e e2 eres : expr) ϕ n t A :
   ϕ →
   nclose specN ⊆ E →
   eres = fill K e2 →
-  envs_entails ℶ (REL t << eres @ E : A) →
-  envs_entails ℶ (REL t << e @ E : A).
+  envs_entails ℶ (REL t ≾ eres @ E : A) →
+  envs_entails ℶ (REL t ≾ e @ E : A).
 Proof.
   intros Hfill Hpure Hϕ ?? Hp. subst.
   rewrite -refines_pure_r //.

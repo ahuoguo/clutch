@@ -564,7 +564,7 @@ Section fundamental.
 
   Theorem refines_typed τ Δ e :
     ∅ ⊢ₜ e : τ →
-    ⊢ REL e << e : interp τ Δ.
+    ⊢ REL e ≾ e : interp τ Δ.
   Proof.
     move=> /fundamental Hty.
     iPoseProof (Hty Δ with "[]") as "H".

@@ -44,9 +44,9 @@ Section logical_ref.
 
   Definition coinN := nroot.@"coins".
 
-  (** lazy << lazy_with_tape << eager *)
+  (** lazy ≾ lazy_with_tape ≾ eager *)
   Lemma lazy_lazy_with_tape_rel :
-    ⊢ REL lazy << lazy_with_tape : (() → ()) → lrel_bool.
+    ⊢ REL lazy ≾ lazy_with_tape : (() → ()) → lrel_bool.
   Proof.
     rewrite /lazy /lazy_with_tape.
     rel_alloc_l l as "Hl".
@@ -86,7 +86,7 @@ Section logical_ref.
   Qed.
 
   Lemma lazy_with_tape_eager_rel :
-    ⊢ REL lazy_with_tape << eager : (() → ()) → lrel_bool.
+    ⊢ REL lazy_with_tape ≾ eager : (() → ()) → lrel_bool.
   Proof.
     rewrite /lazy_with_tape /eager.
     rel_allocBtape_l α as "Hα". rel_pures_l.
@@ -119,9 +119,9 @@ Section logical_ref.
       iModIntro. iRight. iFrame.
   Qed.
 
-  (** eager << lazy_with_tape << lazy *)
+  (** eager ≾ lazy_with_tape ≾ lazy *)
   Lemma eager_lazy_with_tape_rel :
-    ⊢ REL eager << lazy_with_tape : (() → ()) → lrel_bool.
+    ⊢ REL eager ≾ lazy_with_tape : (() → ()) → lrel_bool.
   Proof.
     rewrite /lazy_with_tape /eager.
     rel_allocBtape_r α as "Hα". rel_pures_r.
@@ -154,7 +154,7 @@ Section logical_ref.
   Qed.
 
   Lemma lazy_with_tape_lazy_rel :
-    ⊢ REL lazy_with_tape << lazy : (() → ()) → lrel_bool.
+    ⊢ REL lazy_with_tape ≾ lazy : (() → ()) → lrel_bool.
   Proof.
     rewrite /lazy /lazy_with_tape.
     rel_alloc_r l' as "Hl'". rel_pures_l.

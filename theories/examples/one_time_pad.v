@@ -46,14 +46,14 @@ Section logical_ref.
   Qed.
 
   Lemma xor_xor_sem (b1 b2 : bool) :
-    ⊢ REL xor #b1 #b2 << #(xor_sem b1 b2) : lrel_bool.
+    ⊢ REL xor #b1 #b2 ≾ #(xor_sem b1 b2) : lrel_bool.
   Proof.
     rewrite /xor /xor_sem /negb. destruct b1, b2 ; rel_pures_l ; rel_values ; done.
   Qed.
 
   (* We should a bi-refinement, carefully choosing the relation of the sampled bits. *)
   Lemma real_ideal_rel :
-    ⊢ REL real << ideal : lrel_bool → lrel_bool.
+    ⊢ REL real ≾ ideal : lrel_bool → lrel_bool.
   Proof with foldxor.
     rewrite /real /ideal.
     rel_arrow_val.
@@ -69,7 +69,7 @@ Section logical_ref.
   Qed.
 
   Lemma ideal_real_rel :
-    ⊢ REL ideal << real : lrel_bool → lrel_bool.
+    ⊢ REL ideal ≾ real : lrel_bool → lrel_bool.
   Proof.
     rewrite /real /ideal.
     rel_arrow_val.
@@ -115,7 +115,7 @@ Section logical_ref.
 
   Lemma L_ots_rr :
     ⊢ REL L_ots_rand_real #size keygen enc
-      << L_ots_rand_rand #size keygen enc
+      ≾ L_ots_rand_rand #size keygen enc
       : lrel_bool → lrel_bitlist size.
   Proof.
     unfold L_ots_rand_rand, L_ots_rand_real, enc, keygen.
@@ -135,7 +135,7 @@ Section logical_ref.
 
   Lemma L_ots_rr' :
     ⊢ REL L_ots_rand_rand #size keygen enc
-      << L_ots_rand_real #size keygen enc
+      ≾ L_ots_rand_real #size keygen enc
       : lrel_bool → lrel_bitlist size.
   Proof.
     unfold L_ots_rand_rand, L_ots_rand_real, enc, keygen.

@@ -16,7 +16,7 @@ Proof. solve_inG. Qed.
 Theorem refines_coupling Σ `{clutchRGpreS Σ}
   (A : ∀ `{clutchRGS Σ}, lrel Σ) (φ : val → val → Prop) e e' σ σ' n :
   (∀ `{clutchRGS Σ}, ∀ v v', A v v' -∗ ⌜φ v v'⌝) →
-  (∀ `{clutchRGS Σ}, ⊢ REL e << e' : A) →
+  (∀ `{clutchRGS Σ}, ⊢ REL e ≾ e' : A) →
   refRcoupl (exec_val n (e, σ)) (lim_exec_val (e', σ')) φ.
 Proof.
   intros HA Hlog.

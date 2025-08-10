@@ -671,7 +671,7 @@ Section lazy_int.
     LRel (λ v1 v2, ∃ (z : Z),
           ⌜ v2 = #z ⌝ ∗ na_inv clutchRGS_nais (lrootN.@(v1, z)) (lazy_int z v1))%I.
 
-  Lemma lazy_int_eager_int_refinement Δ : ⊢ REL lazy_int_pack << eager_int_pack : interp intτ Δ.
+  Lemma lazy_int_eager_int_refinement Δ : ⊢ REL lazy_int_pack ≾ eager_int_pack : interp intτ Δ.
   Proof.
     iApply (refines_pack R).
     rewrite refines_eq. iIntros (K) "HK Hown".
@@ -719,7 +719,7 @@ Section lazy_int.
     LRel (λ v1 v2, ∃ (z : Z),
           ⌜ v1 = #z ⌝ ∗ na_inv clutchRGS_nais (lrootN.@(v2, z)) (spec_lazy_int z v2))%I.
 
-  Lemma eager_int_lazy_int_refinement Δ : ⊢ REL eager_int_pack << lazy_int_pack : interp intτ Δ.
+  Lemma eager_int_lazy_int_refinement Δ : ⊢ REL eager_int_pack ≾ lazy_int_pack : interp intτ Δ.
   Proof.
     iApply (refines_pack R').
     rewrite refines_eq. iIntros (K) "HK Hown".
