@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link href="resources/coqdoc.css" rel="stylesheet" type="text/css" />
+<link href="resources/coqdocjs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resources/config.js"></script>
+<script type="text/javascript" src="resources/coqdocjs.js"></script>
+</head>
+
+<body onload="document.getElementById('content').focus()">
+  <div id="header">
+    <span class="left">
+      <span class="modulename"> <script> document.write(document.title) </script> </span>
+    </span>
+
+    <span class="button" id="toggle-proofs"></span>
+
+    <span class="right">
+      <a href="../">Project Page</a>
+      <a href="./indexpage.html"> Index </a>
+      <a href="./toc.html"> Table of Contents </a>
+    </span>
+</div>
+    <div id="content" tabindex="-1" onblur="document.getElementById('content').focus()">
+    <div id="main">
+<h1 class="libtitle">clutch.examples.awkward_lazy_eager_coin</h1>
+
+<div class="code">
+</div>
+
+<div class="doc">
+A minor variation of <span class="inlinecode"><span class="id" title="var">lazy_eager_coin.v</span></span> where the coins take an additional
+    function `f : 1 → 1` as argument, thus making it a variant of the Pitts &amp;
+    Stark "awkward example". It demonstrates the combination of local state
+    encapsulation, asynchronous couplings via tapes, and higher-order
+    functions. The proofs are the almost the same as in <span class="inlinecode"><span class="id" title="var">lazy_eager_coin.v</span></span>,
+    the only difference being the use of sequential composition with `f()` in the
+    body of the closures. 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">clutch</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Export</span> <a class="idref" href="clutch.clutch.html#"><span class="id" title="library">clutch</span></a> <a class="idref" href="clutch.lib.flip.html#"><span class="id" title="library">lib.flip</span></a>.<br/>
+<span class="id" title="keyword">Set</span> <span class="id" title="var">Default</span> <span class="id" title="keyword">Proof</span> <span class="id" title="var">Using</span> "Type*".<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+The lazy/eager coins, without tapes 
+</div>
+<div class="code">
+<span class="id" title="keyword">Definition</span> <a id="lazy" class="idref" href="#lazy"><span class="id" title="definition">lazy</span></a> : <a class="idref" href="clutch.prob_lang.lang.html#prob_lang.expr"><span class="id" title="inductive">expr</span></a> :=<br/>
+&nbsp;&nbsp;<a class="idref" href="clutch.prob_lang.notation.html#f2a86cf1716b42d91300f888867d22e8"><span class="id" title="notation">let</span></a><a class="idref" href="clutch.prob_lang.notation.html#f2a86cf1716b42d91300f888867d22e8"><span class="id" title="notation">:</span></a> "s" <a class="idref" href="clutch.prob_lang.notation.html#f2a86cf1716b42d91300f888867d22e8"><span class="id" title="notation">:=</span></a> <a class="idref" href="clutch.prob_lang.notation.html#::expr_scope:'ref'_x"><span class="id" title="notation">ref</span></a> <a class="idref" href="clutch.prob_lang.notation.html#NONEV"><span class="id" title="abbreviation">NONEV</span></a> <a class="idref" href="clutch.prob_lang.notation.html#f2a86cf1716b42d91300f888867d22e8"><span class="id" title="notation">in</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="clutch.prob_lang.notation.html#d2c3354f6c46df814e66d4c5c9b9c738"><span class="id" title="notation">λ</span></a><a class="idref" href="clutch.prob_lang.notation.html#d2c3354f6c46df814e66d4c5c9b9c738"><span class="id" title="notation">:</span></a> "f"<a class="idref" href="clutch.prob_lang.notation.html#d2c3354f6c46df814e66d4c5c9b9c738"><span class="id" title="notation">,</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"f" <a class="idref" href="clutch.prob_lang.notation.html#66e8f9d9f9894a066beff0d1c67d3c77"><span class="id" title="notation">#</span></a><a class="idref" href="clutch.prob_lang.notation.html#3127c6bc552ca21a494fc6e3474a507d"><span class="id" title="notation">()</span></a> <a class="idref" href="clutch.prob_lang.notation.html#2ec28258c896f2c046d760685d2be2ab"><span class="id" title="notation">;;</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="clutch.prob_lang.notation.html#a6aade80b42bcfcd5f70ea4affa7e487"><span class="id" title="notation">match</span></a><a class="idref" href="clutch.prob_lang.notation.html#a6aade80b42bcfcd5f70ea4affa7e487"><span class="id" title="notation">:</span></a> <a class="idref" href="clutch.prob_lang.notation.html#569b74bc432a2b233b93ae1b45418e26"><span class="id" title="notation">!</span></a>"s" <a class="idref" href="clutch.prob_lang.notation.html#a6aade80b42bcfcd5f70ea4affa7e487"><span class="id" title="notation">with</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="clutch.prob_lang.notation.html#a6aade80b42bcfcd5f70ea4affa7e487"><span class="id" title="notation">|</span></a> <a class="idref" href="clutch.prob_lang.notation.html#a6aade80b42bcfcd5f70ea4affa7e487"><span class="id" title="notation">NONE</span></a> <a class="idref" href="clutch.prob_lang.notation.html#a6aade80b42bcfcd5f70ea4affa7e487"><span class="id" title="notation">=&gt;</span></a> <a class="idref" href="clutch.prob_lang.notation.html#f2a86cf1716b42d91300f888867d22e8"><span class="id" title="notation">let</span></a><a class="idref" href="clutch.prob_lang.notation.html#f2a86cf1716b42d91300f888867d22e8"><span class="id" title="notation">:</span></a> "b" <a class="idref" href="clutch.prob_lang.notation.html#f2a86cf1716b42d91300f888867d22e8"><span class="id" title="notation">:=</span></a> <a class="idref" href="clutch.lib.flip.html#flip"><span class="id" title="definition">flip</span></a> <a class="idref" href="clutch.prob_lang.notation.html#f2a86cf1716b42d91300f888867d22e8"><span class="id" title="notation">in</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"s" <a class="idref" href="clutch.prob_lang.notation.html#::expr_scope:x_'&lt;-'_x"><span class="id" title="notation">&lt;-</span></a> <a class="idref" href="clutch.prob_lang.notation.html#SOME"><span class="id" title="abbreviation">SOME</span></a> "b" <a class="idref" href="clutch.prob_lang.notation.html#2ec28258c896f2c046d760685d2be2ab"><span class="id" title="notation">;;</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"b"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="clutch.prob_lang.notation.html#a6aade80b42bcfcd5f70ea4affa7e487"><span class="id" title="notation">|</span></a> <a class="idref" href="clutch.prob_lang.notation.html#a6aade80b42bcfcd5f70ea4affa7e487"><span class="id" title="notation">SOME</span></a> "b" <a class="idref" href="clutch.prob_lang.notation.html#a6aade80b42bcfcd5f70ea4affa7e487"><span class="id" title="notation">=&gt;</span></a> "b"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="clutch.prob_lang.notation.html#a6aade80b42bcfcd5f70ea4affa7e487"><span class="id" title="notation">end</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a id="eager" class="idref" href="#eager"><span class="id" title="definition">eager</span></a> : <a class="idref" href="clutch.prob_lang.lang.html#prob_lang.expr"><span class="id" title="inductive">expr</span></a> :=<br/>
+&nbsp;&nbsp;<a class="idref" href="clutch.prob_lang.notation.html#f2a86cf1716b42d91300f888867d22e8"><span class="id" title="notation">let</span></a><a class="idref" href="clutch.prob_lang.notation.html#f2a86cf1716b42d91300f888867d22e8"><span class="id" title="notation">:</span></a> "b" <a class="idref" href="clutch.prob_lang.notation.html#f2a86cf1716b42d91300f888867d22e8"><span class="id" title="notation">:=</span></a> <a class="idref" href="clutch.lib.flip.html#flip"><span class="id" title="definition">flip</span></a> <a class="idref" href="clutch.prob_lang.notation.html#f2a86cf1716b42d91300f888867d22e8"><span class="id" title="notation">in</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="clutch.prob_lang.notation.html#d2c3354f6c46df814e66d4c5c9b9c738"><span class="id" title="notation">λ</span></a><a class="idref" href="clutch.prob_lang.notation.html#d2c3354f6c46df814e66d4c5c9b9c738"><span class="id" title="notation">:</span></a> "f"<a class="idref" href="clutch.prob_lang.notation.html#d2c3354f6c46df814e66d4c5c9b9c738"><span class="id" title="notation">,</span></a> "f" <a class="idref" href="clutch.prob_lang.notation.html#66e8f9d9f9894a066beff0d1c67d3c77"><span class="id" title="notation">#</span></a><a class="idref" href="clutch.prob_lang.notation.html#3127c6bc552ca21a494fc6e3474a507d"><span class="id" title="notation">()</span></a> <a class="idref" href="clutch.prob_lang.notation.html#2ec28258c896f2c046d760685d2be2ab"><span class="id" title="notation">;;</span></a> "b".<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+An intetermedaite version of <span class="inlinecode"><span class="id" title="tactic">lazy</span></span> that uses a tape to allow presampling
+    bits during the proof 
+</div>
+<div class="code">
+<span class="id" title="keyword">Definition</span> <a id="lazy_with_tape" class="idref" href="#lazy_with_tape"><span class="id" title="definition">lazy_with_tape</span></a> : <a class="idref" href="clutch.prob_lang.lang.html#prob_lang.expr"><span class="id" title="inductive">expr</span></a> :=<br/>
+&nbsp;&nbsp;<a class="idref" href="clutch.prob_lang.notation.html#f2a86cf1716b42d91300f888867d22e8"><span class="id" title="notation">let</span></a><a class="idref" href="clutch.prob_lang.notation.html#f2a86cf1716b42d91300f888867d22e8"><span class="id" title="notation">:</span></a> "α" <a class="idref" href="clutch.prob_lang.notation.html#f2a86cf1716b42d91300f888867d22e8"><span class="id" title="notation">:=</span></a> <a class="idref" href="clutch.lib.flip.html#allocB"><span class="id" title="definition">allocB</span></a> <a class="idref" href="clutch.prob_lang.notation.html#f2a86cf1716b42d91300f888867d22e8"><span class="id" title="notation">in</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="clutch.prob_lang.notation.html#f2a86cf1716b42d91300f888867d22e8"><span class="id" title="notation">let</span></a><a class="idref" href="clutch.prob_lang.notation.html#f2a86cf1716b42d91300f888867d22e8"><span class="id" title="notation">:</span></a> "s" <a class="idref" href="clutch.prob_lang.notation.html#f2a86cf1716b42d91300f888867d22e8"><span class="id" title="notation">:=</span></a> <a class="idref" href="clutch.prob_lang.notation.html#::expr_scope:'ref'_x"><span class="id" title="notation">ref</span></a> <a class="idref" href="clutch.prob_lang.notation.html#NONEV"><span class="id" title="abbreviation">NONEV</span></a> <a class="idref" href="clutch.prob_lang.notation.html#f2a86cf1716b42d91300f888867d22e8"><span class="id" title="notation">in</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="clutch.prob_lang.notation.html#d2c3354f6c46df814e66d4c5c9b9c738"><span class="id" title="notation">λ</span></a><a class="idref" href="clutch.prob_lang.notation.html#d2c3354f6c46df814e66d4c5c9b9c738"><span class="id" title="notation">:</span></a> "f"<a class="idref" href="clutch.prob_lang.notation.html#d2c3354f6c46df814e66d4c5c9b9c738"><span class="id" title="notation">,</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"f" <a class="idref" href="clutch.prob_lang.notation.html#66e8f9d9f9894a066beff0d1c67d3c77"><span class="id" title="notation">#</span></a><a class="idref" href="clutch.prob_lang.notation.html#3127c6bc552ca21a494fc6e3474a507d"><span class="id" title="notation">()</span></a> <a class="idref" href="clutch.prob_lang.notation.html#2ec28258c896f2c046d760685d2be2ab"><span class="id" title="notation">;;</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="clutch.prob_lang.notation.html#a6aade80b42bcfcd5f70ea4affa7e487"><span class="id" title="notation">match</span></a><a class="idref" href="clutch.prob_lang.notation.html#a6aade80b42bcfcd5f70ea4affa7e487"><span class="id" title="notation">:</span></a> <a class="idref" href="clutch.prob_lang.notation.html#569b74bc432a2b233b93ae1b45418e26"><span class="id" title="notation">!</span></a>"s" <a class="idref" href="clutch.prob_lang.notation.html#a6aade80b42bcfcd5f70ea4affa7e487"><span class="id" title="notation">with</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="clutch.prob_lang.notation.html#a6aade80b42bcfcd5f70ea4affa7e487"><span class="id" title="notation">|</span></a> <a class="idref" href="clutch.prob_lang.notation.html#a6aade80b42bcfcd5f70ea4affa7e487"><span class="id" title="notation">NONE</span></a> <a class="idref" href="clutch.prob_lang.notation.html#a6aade80b42bcfcd5f70ea4affa7e487"><span class="id" title="notation">=&gt;</span></a> <a class="idref" href="clutch.prob_lang.notation.html#f2a86cf1716b42d91300f888867d22e8"><span class="id" title="notation">let</span></a><a class="idref" href="clutch.prob_lang.notation.html#f2a86cf1716b42d91300f888867d22e8"><span class="id" title="notation">:</span></a> "b" <a class="idref" href="clutch.prob_lang.notation.html#f2a86cf1716b42d91300f888867d22e8"><span class="id" title="notation">:=</span></a> <a class="idref" href="clutch.lib.flip.html#flipL"><span class="id" title="definition">flipL</span></a> "α" <a class="idref" href="clutch.prob_lang.notation.html#f2a86cf1716b42d91300f888867d22e8"><span class="id" title="notation">in</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"s" <a class="idref" href="clutch.prob_lang.notation.html#::expr_scope:x_'&lt;-'_x"><span class="id" title="notation">&lt;-</span></a> <a class="idref" href="clutch.prob_lang.notation.html#SOME"><span class="id" title="abbreviation">SOME</span></a> "b" <a class="idref" href="clutch.prob_lang.notation.html#2ec28258c896f2c046d760685d2be2ab"><span class="id" title="notation">;;</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"b"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="clutch.prob_lang.notation.html#a6aade80b42bcfcd5f70ea4affa7e487"><span class="id" title="notation">|</span></a> <a class="idref" href="clutch.prob_lang.notation.html#a6aade80b42bcfcd5f70ea4affa7e487"><span class="id" title="notation">SOME</span></a> "b" <a class="idref" href="clutch.prob_lang.notation.html#a6aade80b42bcfcd5f70ea4affa7e487"><span class="id" title="notation">=&gt;</span></a> "b"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="clutch.prob_lang.notation.html#a6aade80b42bcfcd5f70ea4affa7e487"><span class="id" title="notation">end</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Section</span> <a id="logical_ref" class="idref" href="#logical_ref"><span class="id" title="section">logical_ref</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span> `{<a id="clutchRGS0:2" class="idref" href="#clutchRGS0:2"><span class="id" title="binder">!</span></a><a id="clutchRGS0:2" class="idref" href="#clutchRGS0:2"><span class="id" title="binder">clutchRGS</span></a> <a id="clutchRGS0:2" class="idref" href="#clutchRGS0:2"><span class="id" title="binder">Σ</span></a>}.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a id="coinN" class="idref" href="#coinN"><span class="id" title="definition">coinN</span></a> := <span class="id" title="definition">nroot</span><span class="id" title="notation">.@</span>"coins".<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+lazy <code>lazy_with_tape &lt;&lt; eager *)
+</code>  Lemma lazy_lazy_with_tape_rel :
+    ⊢ REL lazy <code>lazy_with_tape : (() → ()) → lrel_bool.
+</code>  Proof.
+    rewrite /lazy /lazy_with_tape.
+    rel_alloc_l l as "Hl".
+    rel_pures_l.
+    rel_allocBtape_r α as "Hα".
+    rel_pures_r.
+    rel_alloc_r l' as "Hl'".
+    rel_pures_r.
+    set (P := (α ↪ₛB <font size=-2>&#9744;</font> ∗ (l ↦ NONEV ∗ l' ↦ₛ NONEV ∨
+                 ∃ (b: bool), l ↦ SOMEV b ∗ l' ↦ₛ SOMEV b))b <span class="inlinecode"><span class="id" title="var">Hl</span></span> <span class="inlinecode"><span class="id" title="var">Hl'</span></span>]]) Hclose]".
+<ul class="doclist">
+<li> rel_load_l. rel_pures_l.
+      rel_load_r. rel_pures_r.
+      rel_apply (refines_couple_flip_flipL with "<span class="inlinecode">-$<span class="id" title="var">Hα</span></span>").
+      iIntros "!&gt;" (b) "Hα /=".
+      rel_pures_l. rel_store_l. rel_pures_l.
+      rel_pures_r. rel_store_r. rel_pures_r.
+      iApply (refines_na_close with "<span class="inlinecode">-</span> <span class="inlinecode">$<span class="id" title="var">Hclose</span></span> <span class="inlinecode">$<span class="id" title="var">Hα</span></span>").
+      iSplitL; <span class="inlinecode">|<span class="id" title="var">rel_values</span></span>.
+      iRight. iModIntro. iExists _. iFrame.
+
+</li>
+<li> rel_load_l. rel_pures_l.
+      rel_load_r. rel_pures_r.
+      iApply (refines_na_close with "<span class="inlinecode">-</span> <span class="inlinecode">$<span class="id" title="var">Hclose</span></span> <span class="inlinecode">$<span class="id" title="var">Hα</span></span>").
+      iSplitL; <span class="inlinecode">|<span class="id" title="var">rel_values</span></span>.
+      iRight. iModIntro. iExists _. iFrame.
+
+</li>
+</ul>
+  Qed.
+
+<div class="paragraph"> </div>
+
+  Lemma lazy_with_tape_eager_rel :
+    ⊢ REL lazy_with_tape <code>eager : (() → ()) → lrel_bool.
+</code>  Proof.
+    rewrite /lazy_with_tape /eager.
+    rel_allocBtape_l α as "Hα". rel_pures_l.
+    rel_bind_r (flipL _)I).
+    iApply (refines_na_alloc P coinN).
+    iSplitL.
+    { iModIntro. iLeft. iFrame. }
+    iIntros "Hinv".
+    rel_arrow.
+    iIntros (??) "Hff".
+    rel_pures_l. rel_pures_r.
+    iApply (refines_seq with "<span class="inlinecode"><span class="id" title="var">Hff</span></span>"); auto.
+    { iApply refines_app; eauto. rel_values; eauto. }
+    iApply (refines_na_inv with "<span class="inlinecode">$<span class="id" title="var">Hinv</span></span>"); <span class="inlinecode"><span class="id" title="var">done</span>|</span>.
+    iIntros "<span class="inlinecode">[[<span class="id" title="var">Hα</span></span> <span class="inlinecode"><span class="id" title="var">Hl</span>]</span> <span class="inlinecode">|</span> <span class="inlinecode"><span class="id" title="var">Hl</span>]</span> <span class="inlinecode"><span class="id" title="var">Hclose</span></span>".
+<ul class="doclist">
+<li> rel_load_l. rel_pures_l.
+      rel_flipL_l. rel_pures_l.
+      rel_store_l. rel_pures_l.
+      iApply (refines_na_close with "<span class="inlinecode">-</span> <span class="inlinecode">$<span class="id" title="var">Hclose</span></span>").
+      iSplitL; <span class="inlinecode">|<span class="id" title="var">rel_values</span></span>.
+      iModIntro. iRight. iFrame.
+
+</li>
+<li> rel_load_l. rel_pures_l.
+      iApply (refines_na_close with "<span class="inlinecode">-</span> <span class="inlinecode">$<span class="id" title="var">Hclose</span></span>").
+      iSplitL; <span class="inlinecode">|<span class="id" title="var">rel_values</span></span>.
+      iModIntro. iRight. iFrame.
+
+</li>
+</ul>
+  Qed.
+
+<div class="paragraph"> </div>
+
+  <span class="comment">(**&nbsp;eager&nbsp;&lt;&lt;&nbsp;lazy_with_tape&nbsp;&lt;&lt;&nbsp;lazy&nbsp;*)</span><br/>
+  Lemma eager_lazy_with_tape_rel :
+    ⊢ REL eager <code>lazy_with_tape : (() → ()) → lrel_bool.
+</code>  Proof.
+    rewrite /lazy_with_tape /eager.
+    rel_allocBtape_r α as "Hα". rel_pures_r.
+    rel_apply (refines_couple_flip_tape with "<span class="inlinecode">$<span class="id" title="var">Hα</span></span>").
+    iIntros "!&gt;" (b) "Hα /=".
+    rel_pures_r.
+    rel_alloc_r l as "Hl". rel_pures_r.
+    set (P := ((α ↪ₛB <span class="inlinecode"><span class="id" title="var">b</span></span> ∗ l ↦ₛ NONEV) ∨ (l ↦ₛ SOMEV b))%I).
+    iApply (refines_na_alloc P coinN).
+    iSplitL.
+    { iModIntro. iLeft. iFrame. }
+    iIntros "Hinv".
+    rel_arrow.
+    iIntros (??) "Hff".
+    rel_pures_l. rel_pures_r.
+    iApply (refines_seq with "[Hff]"); auto.
+    { iApply refines_app; eauto. rel_values; eauto. }
+    iApply (refines_na_inv with "[$Hinv]"); [done|].
+    iIntros "[[>[Hα Hl] | >Hl] Hclose]".
+    - rel_load_r. rel_pures_r.
+      rel_flipL_r. rel_pures_r.
+      rel_store_r. rel_pures_r.
+      iApply (refines_na_close with "[- $Hclose]").
+      iSplitL; [|rel_values].
+      iModIntro. iRight. iFrame.
+    - rel_load_r. rel_pures_r.
+      iApply (refines_na_close with "[- $Hclose]").
+      iSplitL; [|rel_values].
+      iModIntro. iRight. iFrame.
+  Qed.
+
+  Lemma lazy_with_tape_lazy_rel :
+    ⊢ REL lazy_with_tape << lazy : (() → ()) → lrel_bool.
+  Proof.
+    rewrite /lazy /lazy_with_tape.
+    rel_alloc_r l' as "Hl'". rel_pures_l.
+    rel_allocBtape_l α as "Hα". rel_pures_l.
+    rel_alloc_l l as "Hl". rel_pures_l.
+    set (P := (α ↪B [] ∗ (l ↦ NONEV ∗ l' ↦ₛ NONEV ∨
+                           ∃ (b: bool), l ↦ SOMEV b ∗ l' ↦ₛ SOMEV b))%I).
+    iApply (refines_na_alloc P coinN).
+    iSplitL.
+    { iFrame. iLeft. iFrame. }
+    iIntros "Hinv".
+    rel_arrow.
+    rewrite -/flip. 
+    iIntros (??) "Hff".
+    rel_pures_l.
+    rel_pure_r. simpl. 
+    iApply (refines_seq with "[Hff]"); auto.
+    { iApply refines_app; eauto. rel_values; eauto. }
+    iApply (refines_na_inv with "[$Hinv]"); [done|].
+    iIntros "[(Hα & [[Hl Hl'] | >[%b [Hl Hl']]]) Hclose]".
+    - rel_load_l. rel_pures_l.
+      rel_load_r. rel_pures_r.
+      rel_apply (refines_couple_flipL_flip with "[-$Hα]").
+      iIntros "!>" (b) "Hα /=".
+      rel_pures_l. rel_store_l. rel_pures_l.
+      rel_pures_r. rel_store_r. rel_pures_r.
+      iApply (refines_na_close with "[- $Hclose $Hα]").
+      iSplitL; [|rel_values].
+      iRight. iModIntro. iExists _. iFrame.
+    - rel_load_l. rel_pures_l.
+      rel_load_r. rel_pures_r.
+      iApply (refines_na_close with "[- $Hclose $Hα]").
+      iSplitL; [|rel_values].
+      iRight. iModIntro. iExists _. iFrame.
+  Qed.
+
+End logical_ref.
+
+Theorem lazy_eager_refinement :
+  ∅ ⊨ lazy ≤ctx≤ eager : (() → ()) → TBool.
+Proof.
+  eapply ctx_refines_transitive.
+  - eapply (refines_sound clutchRΣ).
+    intros. apply: lazy_lazy_with_tape_rel.
+  - eapply (refines_sound clutchRΣ).
+    intros. apply: lazy_with_tape_eager_rel.
+Qed.
+
+Theorem eager_lazy_refinement :
+  ∅ ⊨ eager ≤ctx≤ lazy : (() → ()) → TBool.
+Proof.
+  eapply ctx_refines_transitive.
+  - eapply (refines_sound clutchRΣ).
+    intros. apply: eager_lazy_with_tape_rel.
+  - eapply (refines_sound clutchRΣ).
+    intros. apply: lazy_with_tape_lazy_rel.
+Qed.
+
+Theorem eager_lazy_equiv :
+  ∅ ⊨ lazy =ctx= eager : (() → ()) → TBool.
+Proof.
+  split.
+  - apply lazy_eager_refinement.
+  - apply eager_lazy_refinement.
+Qed.
+</div>
+<div class="code">
+</div>
+</div>
+<div id="footer">
+  Generated by <a href="http://coq.inria.fr/">coqdoc</a> and improved with <a href="https://github.com/coq-community/coqdocjs">CoqdocJS</a>
+</div>
+</div>
+</body>
+
+</html>
