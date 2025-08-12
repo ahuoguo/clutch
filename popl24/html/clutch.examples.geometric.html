@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link href="resources/coqdoc.css" rel="stylesheet" type="text/css" />
+<link href="resources/coqdocjs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resources/config.js"></script>
+<script type="text/javascript" src="resources/coqdocjs.js"></script>
+</head>
+
+<body onload="document.getElementById('content').focus()">
+  <div id="header">
+    <span class="left">
+      <span class="modulename"> <script> document.write(document.title) </script> </span>
+    </span>
+
+    <span class="button" id="toggle-proofs"></span>
+
+    <span class="right">
+      <a href="../">Project Page</a>
+      <a href="./indexpage.html"> Index </a>
+      <a href="./toc.html"> Table of Contents </a>
+    </span>
+</div>
+    <div id="content" tabindex="-1" onblur="document.getElementById('content').focus()">
+    <div id="main">
+<h1 class="libtitle">clutch.examples.geometric</h1>
+
+<div class="code">
+<span class="comment">(*&nbsp;Small&nbsp;demo&nbsp;that&nbsp;Clutch&nbsp;can&nbsp;prove&nbsp;equivalence&nbsp;of&nbsp;recursively&nbsp;defined&nbsp;procedures.&nbsp;*)</span><br/>
+
+<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">clutch</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Export</span> <a class="idref" href="clutch.clutch.html#"><span class="id" title="library">clutch</span></a> <a class="idref" href="clutch.lib.flip.html#"><span class="id" title="library">lib.flip</span></a>.<br/>
+<span class="id" title="keyword">Set</span> <span class="id" title="var">Default</span> <span class="id" title="keyword">Proof</span> <span class="id" title="var">Using</span> "Type*".<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a id="geo_true" class="idref" href="#geo_true"><span class="id" title="definition">geo_true</span></a> : <a class="idref" href="clutch.prob_lang.lang.html#prob_lang.val"><span class="id" title="inductive">val</span></a> := <a class="idref" href="clutch.prob_lang.notation.html#3b4611ead68c65413f980c1d4a390696"><span class="id" title="notation">rec</span></a><a class="idref" href="clutch.prob_lang.notation.html#3b4611ead68c65413f980c1d4a390696"><span class="id" title="notation">:</span></a> "f" "n" <a class="idref" href="clutch.prob_lang.notation.html#3b4611ead68c65413f980c1d4a390696"><span class="id" title="notation">:=</span></a> <a class="idref" href="clutch.prob_lang.notation.html#::expr_scope:'if:'_x_'then'_x_'else'_x"><span class="id" title="notation">if</span></a><a class="idref" href="clutch.prob_lang.notation.html#::expr_scope:'if:'_x_'then'_x_'else'_x"><span class="id" title="notation">:</span></a> <a class="idref" href="clutch.lib.flip.html#flip"><span class="id" title="definition">flip</span></a> <a class="idref" href="clutch.prob_lang.notation.html#::expr_scope:'if:'_x_'then'_x_'else'_x"><span class="id" title="notation">then</span></a> "n" <a class="idref" href="clutch.prob_lang.notation.html#::expr_scope:'if:'_x_'then'_x_'else'_x"><span class="id" title="notation">else</span></a> "f" ("n" <a class="idref" href="clutch.prob_lang.notation.html#a4d9e3466bf1928a450a1a8426a17af3"><span class="id" title="notation">+</span></a> <a class="idref" href="clutch.prob_lang.notation.html#66e8f9d9f9894a066beff0d1c67d3c77"><span class="id" title="notation">#</span></a>1).<br/>
+<span class="id" title="keyword">Definition</span> <a id="geo_false" class="idref" href="#geo_false"><span class="id" title="definition">geo_false</span></a> : <a class="idref" href="clutch.prob_lang.lang.html#prob_lang.val"><span class="id" title="inductive">val</span></a> := <a class="idref" href="clutch.prob_lang.notation.html#3b4611ead68c65413f980c1d4a390696"><span class="id" title="notation">rec</span></a><a class="idref" href="clutch.prob_lang.notation.html#3b4611ead68c65413f980c1d4a390696"><span class="id" title="notation">:</span></a> "f" "n" <a class="idref" href="clutch.prob_lang.notation.html#3b4611ead68c65413f980c1d4a390696"><span class="id" title="notation">:=</span></a> <a class="idref" href="clutch.prob_lang.notation.html#::expr_scope:'if:'_x_'then'_x_'else'_x"><span class="id" title="notation">if</span></a><a class="idref" href="clutch.prob_lang.notation.html#::expr_scope:'if:'_x_'then'_x_'else'_x"><span class="id" title="notation">:</span></a> <a class="idref" href="clutch.lib.flip.html#flip"><span class="id" title="definition">flip</span></a> <a class="idref" href="clutch.prob_lang.notation.html#::expr_scope:'if:'_x_'then'_x_'else'_x"><span class="id" title="notation">then</span></a> "f" ("n" <a class="idref" href="clutch.prob_lang.notation.html#a4d9e3466bf1928a450a1a8426a17af3"><span class="id" title="notation">+</span></a> <a class="idref" href="clutch.prob_lang.notation.html#66e8f9d9f9894a066beff0d1c67d3c77"><span class="id" title="notation">#</span></a>1) <a class="idref" href="clutch.prob_lang.notation.html#::expr_scope:'if:'_x_'then'_x_'else'_x"><span class="id" title="notation">else</span></a> "n".<br/>
+
+<br/>
+<span class="id" title="keyword">Section</span> <a id="logical_ref" class="idref" href="#logical_ref"><span class="id" title="section">logical_ref</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Context</span> `{<a id="clutchRGS0:2" class="idref" href="#clutchRGS0:2"><span class="id" title="binder">!</span></a><a id="clutchRGS0:2" class="idref" href="#clutchRGS0:2"><span class="id" title="binder">clutchRGS</span></a> <a id="clutchRGS0:2" class="idref" href="#clutchRGS0:2"><span class="id" title="binder">Σ</span></a>}.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a id="true_false" class="idref" href="#true_false"><span class="id" title="lemma">true_false</span></a> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="notation">⊢</span> <a class="idref" href="clutch.rel_logic.model.html#e0a731efa6662a1a7aedffb1e1ed7018"><span class="id" title="notation">REL</span></a> <a class="idref" href="clutch.examples.geometric.html#geo_true"><span class="id" title="definition">geo_true</span></a> <a class="idref" href="clutch.rel_logic.model.html#e0a731efa6662a1a7aedffb1e1ed7018"><span class="id" title="notation">≾</span></a> <a class="idref" href="clutch.examples.geometric.html#geo_false"><span class="id" title="definition">geo_false</span></a> <a class="idref" href="clutch.rel_logic.model.html#e0a731efa6662a1a7aedffb1e1ed7018"><span class="id" title="notation">:</span></a> <a class="idref" href="clutch.rel_logic.model.html#lrel_int"><span class="id" title="definition">lrel_int</span></a> <a class="idref" href="clutch.rel_logic.model.html#198b3df6111d1e335bfbd02615def5fc"><span class="id" title="notation">→</span></a> <a class="idref" href="clutch.rel_logic.model.html#lrel_int"><span class="id" title="definition">lrel_int</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Proof</span> <span class="id" title="keyword">with</span> <span class="id" title="var">rel_pures_l</span> ; <span class="id" title="var">rel_pures_r</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">auto</span>...<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">iLöb</span> <span class="id" title="keyword">as</span> "HH".<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> /<a class="idref" href="clutch.examples.geometric.html#geo_true"><span class="id" title="definition">geo_true</span></a> /<a class="idref" href="clutch.examples.geometric.html#geo_false"><span class="id" title="definition">geo_false</span></a>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">rel_arrow_val</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">iIntros</span> (??) "[%n [-&gt; -&gt;]]"...<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">rel_apply</span> (<a class="idref" href="clutch.lib.flip.html#refines_couple_flip_flip"><span class="id" title="lemma">refines_couple_flip_flip</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.16.1/stdlib//Coq.Init.Datatypes.html#negb"><span class="id" title="definition">negb</span></a>) =&gt; /=.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">iIntros</span> "!&gt;" ([]).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id" title="tactic">auto</span>... <span class="id" title="var">rel_values</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id" title="var">rel_pure_r</span>. <span class="id" title="var">rel_pure_l</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">fold</span> <a class="idref" href="clutch.examples.geometric.html#geo_true"><span class="id" title="definition">geo_true</span></a>. <span class="id" title="tactic">fold</span> <a class="idref" href="clutch.examples.geometric.html#geo_false"><span class="id" title="definition">geo_false</span></a>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">rel_apply</span> <a class="idref" href="clutch.rel_logic.compatibility.html#refines_app"><span class="id" title="lemma">refines_app</span></a>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id" title="var">iAssumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id" title="tactic">auto</span>... <span class="id" title="var">rel_values</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a id="false_true" class="idref" href="#false_true"><span class="id" title="lemma">false_true</span></a> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="notation">⊢</span> <a class="idref" href="clutch.rel_logic.model.html#e0a731efa6662a1a7aedffb1e1ed7018"><span class="id" title="notation">REL</span></a> <a class="idref" href="clutch.examples.geometric.html#geo_false"><span class="id" title="definition">geo_false</span></a> <a class="idref" href="clutch.rel_logic.model.html#e0a731efa6662a1a7aedffb1e1ed7018"><span class="id" title="notation">≾</span></a> <a class="idref" href="clutch.examples.geometric.html#geo_true"><span class="id" title="definition">geo_true</span></a> <a class="idref" href="clutch.rel_logic.model.html#e0a731efa6662a1a7aedffb1e1ed7018"><span class="id" title="notation">:</span></a> <a class="idref" href="clutch.rel_logic.model.html#lrel_int"><span class="id" title="definition">lrel_int</span></a> <a class="idref" href="clutch.rel_logic.model.html#198b3df6111d1e335bfbd02615def5fc"><span class="id" title="notation">→</span></a> <a class="idref" href="clutch.rel_logic.model.html#lrel_int"><span class="id" title="definition">lrel_int</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Proof</span> <span class="id" title="keyword">with</span> <span class="id" title="var">rel_pures_l</span> ; <span class="id" title="var">rel_pures_r</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">auto</span>...<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">iLöb</span> <span class="id" title="keyword">as</span> "HH".<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> /<a class="idref" href="clutch.examples.geometric.html#geo_true"><span class="id" title="definition">geo_true</span></a> /<a class="idref" href="clutch.examples.geometric.html#geo_false"><span class="id" title="definition">geo_false</span></a>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">rel_arrow_val</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">iIntros</span> (??) "[%n [-&gt; -&gt;]]"...<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">rel_apply</span> (<a class="idref" href="clutch.lib.flip.html#refines_couple_flip_flip"><span class="id" title="lemma">refines_couple_flip_flip</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.16.1/stdlib//Coq.Init.Datatypes.html#negb"><span class="id" title="definition">negb</span></a>) =&gt; /=.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">iIntros</span> "!&gt;" ([]).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id" title="var">rel_pure_r</span>. <span class="id" title="var">rel_pure_l</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">fold</span> <a class="idref" href="clutch.examples.geometric.html#geo_true"><span class="id" title="definition">geo_true</span></a>. <span class="id" title="tactic">fold</span> <a class="idref" href="clutch.examples.geometric.html#geo_false"><span class="id" title="definition">geo_false</span></a>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">rel_apply</span> <a class="idref" href="clutch.rel_logic.compatibility.html#refines_app"><span class="id" title="lemma">refines_app</span></a>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id" title="var">iAssumption</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id" title="tactic">auto</span>... <span class="id" title="var">rel_values</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- <span class="id" title="tactic">auto</span>... <span class="id" title="var">rel_values</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">Qed</span>.<br/>
+<span class="id" title="keyword">End</span> <a class="idref" href="clutch.examples.geometric.html#logical_ref"><span class="id" title="section">logical_ref</span></a>.<br/>
+</div>
+</div>
+<div id="footer">
+  Generated by <a href="http://coq.inria.fr/">coqdoc</a> and improved with <a href="https://github.com/coq-community/coqdocjs">CoqdocJS</a>
+</div>
+</div>
+</body>
+
+</html>
