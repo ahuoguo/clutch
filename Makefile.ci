@@ -1,3 +1,6 @@
+# run coqdoc by default (our CI entrypoint)
+.DEFAULT_GOAL := ci
+
 SRC_DIRS := 'theories'
 EXT_DIRS := 'external'
 ALL_VFILES := $(shell find $(EXT_DIRS) $(SRC_DIRS) -name '*.v' -a '!' -name '*'.\#'*')
@@ -16,8 +19,15 @@ Makefile.coq: _CoqProject $(ALL_VFILES)
 
 include coqdocjs/Makefile.doc
 
-all: Makefile.coq
-	make -f Makefile.ci coqdoc
+# ensure coqdoc won't run before Makefile.coq is generated
+coqdoc: Makefile.coq
+
+.PHONY: all ci
+
+all:
+	$(MAKE) -f Makefile.coq
+
+ci: Makefile.coq coqdoc
 
 .coqdeps.d: $(ALL_VFILES) _CoqProject
 	@echo "COQDEP $@"
@@ -50,5 +60,3 @@ clean:
 
 tar:
 	git archive --format=tar.gz -o coq-clutch.tar.gz HEAD
-
-.PHONY: clean zip
