@@ -48,6 +48,7 @@ jobs:
             startGroup Also deploy clutch POPL24
               cd html/
               git clone https://github.com/ahuoguo/clutch.git -b gh-pages
+              cd ..
             endGroup
           uninstall: |
             make clean
