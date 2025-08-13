@@ -7,7 +7,13 @@ Q:=@
 # extract global arguments for Coq from _CoqProject
 COQPROJECT_ARGS := $(shell sed -E -e '/^\#/d' -e 's/-arg ([^ ]*)/\1/g' _CoqProject)
 
+# TODO: Not exctly sure why? but I need to run `make all` before `make coqdoc`
+Makefile.coq: _CoqProject $(VFILES)
+	$(Q)coq_makefile -f _CoqProject $(VFILES) -o Makefile.coq -docroot .
+
 -include coqdocjs/Makefile.doc
+
+coqdoc: Makefile.coq
 
 all: $(VFILES:.v=.vo)
 
@@ -37,6 +43,8 @@ clean:
 	$(Q)find $(EXT_DIRS) $(SRC_DIRS) \( -name "*.vo" -o -name "*.vo[sk]" \
 		-o -name ".*.aux" -o -name ".*.cache" -o -name "*.glob" \) -delete
 	$(Q)rm -f .lia.cache
+	rm -rf html
+	rm -f Makefile.coq Makefile.coq.conf
 	rm -f .coqdeps.d
 
 zip:

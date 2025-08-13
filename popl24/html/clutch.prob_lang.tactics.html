@@ -29,11 +29,11 @@
 
 <div class="code">
 <span class="id" title="keyword">From</span> <span class="id" title="var">Coq</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.16.1/stdlib//Coq.Reals.Reals.html#"><span class="id" title="library">Reals</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.16.1/stdlib//Coq.micromega.Psatz.html#"><span class="id" title="library">Psatz</span></a>.<br/>
-<span class="id" title="keyword">From</span> <span class="id" title="var">stdpp</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <span class="id" title="library">fin_maps</span>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">stdpp</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="https://plv.mpi-sws.org/coqdoc/stdpp//stdpp.fin_maps.html#"><span class="id" title="library">fin_maps</span></a>.<br/>
 <span class="id" title="keyword">From</span> <span class="id" title="var">clutch.prob</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="clutch.prob.distribution.html#"><span class="id" title="library">distribution</span></a>.<br/>
 <span class="id" title="keyword">From</span> <span class="id" title="var">clutch.program_logic</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="clutch.program_logic.ectx_language.html#"><span class="id" title="library">ectx_language</span></a>.<br/>
 <span class="id" title="keyword">From</span> <span class="id" title="var">clutch.prob_lang</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="clutch.prob_lang.lang.html#"><span class="id" title="library">lang</span></a>.<br/>
-<span class="id" title="keyword">From</span> <span class="id" title="var">iris.prelude</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <span class="id" title="library">options</span>.<br/>
+<span class="id" title="keyword">From</span> <span class="id" title="var">iris.prelude</span> <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="https://plv.mpi-sws.org/coqdoc/iris//iris.prelude.options.html#"><span class="id" title="library">options</span></a>.<br/>
 <span class="id" title="keyword">Import</span> <a class="idref" href="clutch.prob_lang.lang.html#prob_lang"><span class="id" title="module">prob_lang</span></a>.<br/>
 
 <br/>
@@ -89,7 +89,7 @@ for each possible decomposition until <span class="inlinecode"><span class="id" 
 
 <div class="doc">
 The tactic <span class="inlinecode"><span class="id" title="var">inv_head_step</span></span> performs inversion on hypotheses of the shape
-    <span class="inlinecode"><a class="idref" href="clutch.program_logic.ectxi_language.html#head_step"><span class="id" title="projection">head_step</span></a></span>. The tactic will discharge head-reductions starting from values,
+    <span class="inlinecode"><a class="idref" href="clutch.prob_lang.lang.html#prob_lang.head_step"><span class="id" title="definition">head_step</span></a></span>. The tactic will discharge head-reductions starting from values,
     and simplifies hypothesis related to conversions from and to values, and
     finite map operations. This tactic is slightly ad-hoc and tuned for proving
     our lifting lemmas. 

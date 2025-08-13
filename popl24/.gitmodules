@@ -1,3 +1,0 @@
-[submodule "coqdocjs"]
-	path = coqdocjs
-	url = https://github.com/rocq-community/coqdocjs.git

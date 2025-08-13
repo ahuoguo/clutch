@@ -1,0 +1,3 @@
+[submodule "popl24/coqdocjs"]
+	path = popl24/coqdocjs
+	url = git@github.com:ahuoguo/coqdocjs.git
