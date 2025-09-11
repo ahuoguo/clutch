@@ -107,7 +107,7 @@ Section counterexample_annotation.
     econstructor; first last.
     - tychk.
     - tychk.
-    (* New rule... *)
+    (* TODO: New rule..., the fundemental theorem of LR requires some rework... *)
     - apply BinOp_typed_nat2.
       + tychk.
       + tychk.
@@ -143,7 +143,7 @@ Section counterexample_annotation.
     - rewrite H.
       iApply refines_typed.
       apply flipL_syn_typed.
-  Admitted.
+  Qed.
 
     
     
