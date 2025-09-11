@@ -256,6 +256,10 @@ with val_typed : val → type → Prop :=
 where "Γ ⊢ₜ e : τ" := (typed Γ e τ)
 and "⊢ᵥ e : τ" := (val_typed e τ).
 
+Lemma binop_nat1_typed_safe (op : bin_op) (n1 n2 : Z) τ :
+  binop_int_res_type op = Some τ → is_Some (bin_op_eval op (LitV (LitInt n1)) (LitV (LitInt n2))).
+Proof. destruct op; simpl; eauto. Qed.
+
 Lemma binop_int_typed_safe (op : bin_op) (n1 n2 : Z) τ :
   binop_int_res_type op = Some τ → is_Some (bin_op_eval op (LitV (LitInt n1)) (LitV (LitInt n2))).
 Proof. destruct op; simpl; eauto. Qed.
