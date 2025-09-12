@@ -495,13 +495,13 @@ Tactic Notation "rel_flipL_r" :=
 Global Opaque tapeB.
 
 Lemma lim_exec_val_rand σ:
-  lim_exec_val ((rand(#()) #1%nat)%E, σ) #0 = 0.
+  lim_exec_val ((rand(#()) #1%nat)%E, σ) #0 = (1/2)%R.
 Proof.
   rewrite lim_exec_val_rw.
   rewrite mon_sup_succ.
   - erewrite <-sup_seq_const. do 2 f_equal. apply functional_extensionality_dep.
     intros n. simpl. rewrite head_prim_step_eq => /=.
-    
+Admitted.
 
 
 Lemma lim_exec_rand σ :
@@ -510,7 +510,6 @@ Proof.
   (* TODO: why does this work?? *)
   apply (lim_exec_val_rand σ).
 Qed.
-
 
 
 Lemma lim_exec_flip σ :
