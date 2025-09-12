@@ -184,12 +184,12 @@ Lemma bad `{!clutchRGS Σ} :
 Proof.
   intros H.
   unfold ctx_refines in H.
-  set (state_empty := {| heap := gmap_empty; tapes := gmap_empty; |}).
-  specialize (H [] state_empty false).
+  set (σ0 := {| heap := gmap_empty; tapes := gmap_empty; |}).
+  specialize (H [] σ0 false).
   simpl in H.
   destruct H.
   - econstructor.
-  - rewrite /flip /flip_ors.
+  - rewrite /flip /flip_ors in H.
     admit.
     (* apply Sup_seq_ext in H.
     destruct H as [H|H].
