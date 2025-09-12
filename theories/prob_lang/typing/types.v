@@ -151,6 +151,12 @@ Inductive typed : stringmap type → expr → type → Prop :=
      Γ ⊢ₜ e1 : TBool → Γ ⊢ₜ e2 : TBool →
      binop_bool_res_type op = Some τ →
      Γ ⊢ₜ BinOp op e1 e2 : τ
+  | BinOp_typed_nat1 Γ e1 e2 :
+     Γ ⊢ₜ e1 : TInt → Γ ⊢ₜ e2 : TNat →
+     Γ ⊢ₜ BinOp EqOp e1 e2 : TBool
+  | BinOp_typed_nat2 Γ e1 e2 :
+     Γ ⊢ₜ e1 : TNat → Γ ⊢ₜ e2 : TInt →
+     Γ ⊢ₜ BinOp EqOp e1 e2 : TBool
 (* NB: The below typing rule for Offsets is not safe: even when the premises
 hold, the location computed by offsetting e1 with e2 may not hold a value of
 type τ, and evaluation will get stuck. A separate type of arrays together with
