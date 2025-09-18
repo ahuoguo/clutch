@@ -385,6 +385,34 @@ Section fundamental.
     destruct op; inversion Hopv'; simplify_eq/=; eauto.
   Qed.
 
+  Lemma bin_log_related_nat1_binop Δ Γ op e1 e2 e1' e2' τ :
+    binop_bool_res_type op = Some τ →
+    (〈Δ;Γ〉 ⊨ e1 ≤log≤ e1' : TNat) -∗
+    (〈Δ;Γ〉 ⊨ e2 ≤log≤ e2' : TInt) -∗
+    〈Δ;Γ〉 ⊨ BinOp op e1 e2 ≤log≤ BinOp op e1' e2' : τ.
+  Proof.
+    iIntros (Hopτ) "IH1 IH2".
+    intro_clause.
+    rel_bind_ap e2 e2' "IH2" v2 v2' "IH2".
+    rel_bind_ap e1 e1' "IH1" v1 v1' "IH1".
+    iDestruct "IH1" as (n) "[% %]"; simplify_eq/=.
+    iDestruct "IH2" as (n') "[% %]"; simplify_eq/=.
+     (* TODO *)
+    (* destruct (binop_int_typed_safe op (Z.of_nat n) n' _ Hopτ) as [v' Hopv'].
+    rel_op_l; eauto.
+    rel_op_r; eauto.
+    value_case.
+    destruct op; inversion Hopv'; simplify_eq/=; try case_match; eauto. *)
+  Admitted.
+
+  Lemma bin_log_related_nat2_binop Δ Γ op e1 e2 e1' e2' τ :
+    binop_bool_res_type op = Some τ →
+    (〈Δ;Γ〉 ⊨ e1 ≤log≤ e1' : TInt) -∗
+    (〈Δ;Γ〉 ⊨ e2 ≤log≤ e2' : TNat) -∗
+    〈Δ;Γ〉 ⊨ BinOp op e1 e2 ≤log≤ BinOp op e1' e2' : τ.
+  Proof.
+  Admitted.
+
   Lemma bin_log_related_int_unop Δ Γ op e e' τ :
     unop_int_res_type op = Some τ →
     (〈Δ;Γ〉 ⊨ e ≤log≤ e' : TInt) -∗
@@ -504,6 +532,10 @@ Section fundamental.
       + iApply bin_log_related_int_binop; first done;
           by iApply fundamental.
       + iApply bin_log_related_bool_binop; first done;
+          by iApply fundamental.
+      + iApply bin_log_related_nat2_binop; first done;
+          by iApply fundamental.
+      + iApply bin_log_related_nat1_binop; first done;
           by iApply fundamental.
       + iApply bin_log_related_int_unop; first done.
         by iApply fundamental.
