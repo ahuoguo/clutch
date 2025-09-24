@@ -1,0 +1,480 @@
+<h2 id="reference-from-the-paper-to-the-code">Reference from the paper
+to the code</h2>
+<table>
+<colgroup>
+<col style="width: 2%" />
+<col style="width: 6%" />
+<col style="width: 18%" />
+<col style="width: 19%" />
+<col style="width: 22%" />
+<col style="width: 31%" />
+</colgroup>
+<thead>
+<tr>
+<th>§</th>
+<th>Kind</th>
+<th>Item</th>
+<th>Coq file</th>
+<th>Name</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.1</td>
+<td>Example</td>
+<td><code>coinToss</code></td>
+<td><a
+href="tachis.tachis.examples.geometric.html">theories/tachis/examples/geometric.v</a></td>
+<td><code>geo</code></td>
+<td></td>
+</tr>
+<tr>
+<td>2.2</td>
+<td>Example</td>
+<td><code>op</code> non-amortized</td>
+<td><a
+href="tachis.tachis.examples.amortized.html">theories/tachis/examples/amortized.v</a></td>
+<td><code>wp_op_ert</code></td>
+<td></td>
+</tr>
+<tr>
+<td>2.2</td>
+<td>Example</td>
+<td><code>op</code> amortized</td>
+<td><a
+href="tachis.tachis.examples.amortized.html">theories/tachis/examples/amortized.v</a></td>
+<td><code>wp_op_n_aert</code></td>
+<td></td>
+</tr>
+<tr>
+<td>3.1</td>
+<td>Definition</td>
+<td>Discrete subdistribution</td>
+<td><a
+href="tachis.prob.distribution.html">theories/prob/distribution.v</a></td>
+<td><code>distr</code></td>
+<td></td>
+</tr>
+<tr>
+<td>3.1</td>
+<td>Definition</td>
+<td>Discrete distribution monad</td>
+<td><a
+href="tachis.prob.distribution.html">theories/prob/distribution.v</a></td>
+<td><code>dbind</code>, <code>dret</code>, etc</td>
+<td></td>
+</tr>
+<tr>
+<td>3.1</td>
+<td>Definition</td>
+<td><code>RandML</code></td>
+<td><a
+href="tachis.prob_lang.lang.html">theories/prob_lang/lang.v</a></td>
+<td>Whole file</td>
+<td></td>
+</tr>
+<tr>
+<td>3.1</td>
+<td>Definition</td>
+<td><code>step</code></td>
+<td><a
+href="tachis.common.ectx_language.html">theories/common/ectx_language.v</a></td>
+<td><code>prim_step</code></td>
+<td></td>
+</tr>
+<tr>
+<td>3.1</td>
+<td>Definition</td>
+<td><code>exec_n</code></td>
+<td><a href="tachis.common.exec.html">theories/common/exec.v</a></td>
+<td><code>exec</code></td>
+<td></td>
+</tr>
+<tr>
+<td>3.1</td>
+<td>Definition</td>
+<td><code>exec</code></td>
+<td><a href="tachis.common.exec.html">theories/common/exec.v</a></td>
+<td><code>lim_exec_val</code></td>
+<td></td>
+</tr>
+<tr>
+<td>3.2</td>
+<td>Definition</td>
+<td>Cost model</td>
+<td><a
+href="tachis.tachis.ert_weakestpre.html">theories/tachis/ert_weakestpre.v</a></td>
+<td><code>Costfun</code></td>
+<td></td>
+</tr>
+<tr>
+<td>3.2</td>
+<td>Definition</td>
+<td>Expected cost, <span class="math inline"><em>m</em></span>
+steps</td>
+<td><a
+href="tachis.tachis.adequacy.html">theories/tachis/adequacy.v</a></td>
+<td><code>ERT</code></td>
+<td></td>
+</tr>
+<tr>
+<td>3.2</td>
+<td>Definition</td>
+<td>Expected cost (limit)</td>
+<td><a
+href="tachis.tachis.adequacy.html">theories/tachis/adequacy.v</a></td>
+<td><code>lim_ERT</code></td>
+<td></td>
+</tr>
+<tr>
+<td>3.2</td>
+<td>Definition</td>
+<td><code>cost_all</code></td>
+<td><a
+href="tachis.tachis.cost_models.html">theories/tachis/cost_models.v</a></td>
+<td><code>CostLanguageCtx_Cost1_prob_lang</code></td>
+<td></td>
+</tr>
+<tr>
+<td>3.2</td>
+<td>Definition</td>
+<td><code>cost_app</code></td>
+<td><a
+href="tachis.tachis.cost_models.html">theories/tachis/cost_models.v</a></td>
+<td><code>CostApp</code></td>
+<td></td>
+</tr>
+<tr>
+<td>3.2</td>
+<td>Definition</td>
+<td><code>cost_rand</code></td>
+<td><a
+href="tachis.tachis.cost_models.html">theories/tachis/cost_models.v</a></td>
+<td><code>CostEntropy</code></td>
+<td></td>
+</tr>
+<tr>
+<td>3.2</td>
+<td>Definition</td>
+<td><code>cost_tick</code></td>
+<td><a
+href="tachis.tachis.cost_models.html">theories/tachis/cost_models.v</a></td>
+<td><code>CostTick</code></td>
+<td></td>
+</tr>
+<tr>
+<td>4.1</td>
+<td>Definition</td>
+<td><code>iProp</code></td>
+<td>Imported from <a
+href="https://gitlab.mpi-sws.org/iris/iris/-/blob/master/iris/base_logic/lib/iprop.v">Iris
+upstream</a></td>
+<td><code>iProp</code></td>
+<td></td>
+</tr>
+<tr>
+<td>4.1</td>
+<td>Definition</td>
+<td>Credit assertion</td>
+<td><a
+href="tachis.tachis.expected_time_credits.html">theories/tachis/expected_time_credits.v</a></td>
+<td><code>ec</code></td>
+<td><code>⧖ x</code> is notation in our development for
+<code>$ x</code></td>
+</tr>
+<tr>
+<td>4.1</td>
+<td>Rule</td>
+<td>Credit splitting rule</td>
+<td><a
+href="tachis.tachis.expected_time_credits.html">theories/tachis/expected_time_credits.v</a></td>
+<td><code>etc_split</code>, <code>etc_combine</code></td>
+<td></td>
+</tr>
+<tr>
+<td>4.2</td>
+<td>Theorem</td>
+<td>Adqeuacy (Hoare Triples)</td>
+<td><a
+href="tachis.tachis.adequacy.html">theories/tachis/adequacy.v</a></td>
+<td>Derivable from <code>wp_correct_lim</code></td>
+<td></td>
+</tr>
+<tr>
+<td>4.2</td>
+<td>Rule</td>
+<td><code>HT-BIND</code></td>
+<td><a
+href="tachis.tachis.ert_weakestpre.html">theories/tachis/ert_weakestpre.v</a></td>
+<td><code>ert_wp_bind</code></td>
+<td>See also <code>tac_wp_bind</code> in
+<code>tachis/proofmode.v</code></td>
+</tr>
+<tr>
+<td>4.2</td>
+<td>Rule</td>
+<td><code>HT-FRAME</code></td>
+<td><a
+href="tachis.tachis.ert_weakestpre.html">theories/tachis/ert_weakestpre.v</a></td>
+<td>Derivable from <code>ert_wp_frame_l</code> and
+<code>ert_wp_frame_r</code></td>
+<td>See also <code>frame_ert_wp</code></td>
+</tr>
+<tr>
+<td>4.2</td>
+<td>Rule</td>
+<td><code>HT-LOAD</code></td>
+<td><a
+href="tachis.tachis.primitive_laws.html">theories/tachis/primitive_laws.v</a></td>
+<td><code>wp_load</code></td>
+<td></td>
+</tr>
+<tr>
+<td>4.2</td>
+<td>Rule</td>
+<td><code>HT-RAND</code></td>
+<td><a
+href="tachis.tachis.primitive_laws.html">theories/tachis/primitive_laws.v</a></td>
+<td><code>wp_rand</code></td>
+<td></td>
+</tr>
+<tr>
+<td>4.2</td>
+<td>Rule</td>
+<td><code>HT-REC</code></td>
+<td><a
+href="tachis.tachis.primitive_laws.html">theories/tachis/primitive_laws.v</a></td>
+<td><code>wp_rec_löb</code></td>
+<td></td>
+</tr>
+<tr>
+<td>4.2</td>
+<td>Rule</td>
+<td><code>HT-RAND-EXP</code></td>
+<td><a
+href="tachis.tachis.ert_rules.html">theories/tachis/ert_rules.v</a></td>
+<td><code>wp_couple_rand_adv_comp_strong'</code></td>
+<td></td>
+</tr>
+<tr>
+<td>4.3</td>
+<td>File</td>
+<td>Cost model tactics</td>
+<td><a
+href="tachis.tachis.proofmode.html">theories/tachis/proofmode.v</a></td>
+<td>Whole file</td>
+<td>See eg. <code>wp_*</code> tactics</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td>Example</td>
+<td>Coupon Collector</td>
+<td><a
+href="tachis.tachis.examples.couponcollector.html">theories/tachis/examples/couponcollector.v</a></td>
+<td><code>wp_coupon_collection</code></td>
+<td></td>
+</tr>
+<tr>
+<td>5.2</td>
+<td>Example</td>
+<td>Fischer Yates Shuffle</td>
+<td><a
+href="tachis.tachis.examples.fisher_yates.html">theories/tachis/examples/fisher_yates.v</a></td>
+<td><code>wp_fisher_yates</code></td>
+<td></td>
+</tr>
+<tr>
+<td>5.4</td>
+<td>Example</td>
+<td>Hash map</td>
+<td><a
+href="tachis.tachis.examples.hashmap.hashmap.html">theories/tachis/examples/hashmap/hashmap.v</a></td>
+<td><code>wp_amortized_hm_insert_new</code></td>
+<td></td>
+</tr>
+<tr>
+<td>5.4</td>
+<td>Example</td>
+<td>Ammortized Hash map</td>
+<td><a
+href="tachis.tachis.examples.hashmap.hashmap.html">theories/tachis/examples/hashmap/hashmap.v</a></td>
+<td><code>wp_hm_insert_new</code>, <code>wp_hm_lookup_new</code></td>
+<td></td>
+</tr>
+<tr>
+<td>5.5</td>
+<td>Example</td>
+<td>Quicksort Time bound</td>
+<td><a
+href="tachis.tachis.examples.quicksort.html">theories/tachis/examples/quicksort.v</a></td>
+<td><code>qs_time_bound</code></td>
+<td></td>
+</tr>
+<tr>
+<td>5.5</td>
+<td>Example</td>
+<td>Quicksort Expected entropy bound</td>
+<td><a
+href="tachis.tachis.examples.quicksort.html">theories/tachis/examples/quicksort.v</a></td>
+<td><code>qs_ent_bound</code></td>
+<td></td>
+</tr>
+<tr>
+<td>5.6</td>
+<td>Example</td>
+<td>Meldable heap implementation</td>
+<td><a
+href="tachis.tachis.examples.meldable_heap.html">theories/tachis/examples/meldable_heap.v</a></td>
+<td><code>meld_heap_spec</code></td>
+<td></td>
+</tr>
+<tr>
+<td>5.6</td>
+<td>Specification</td>
+<td>Abstract comparator specification <code>isComp</code></td>
+<td><a
+href="tachis.tachis.examples.min_heap_spec.html">theories/tachis/examples/min_heap_spec.v</a></td>
+<td><code>comparator</code></td>
+<td></td>
+</tr>
+<tr>
+<td>5.6</td>
+<td>Specification</td>
+<td>Abstract min-heap specification</td>
+<td><a
+href="tachis.tachis.examples.min_heap_spec.html">theories/tachis/examples/min_heap_spec.v</a></td>
+<td><code>min_heap</code></td>
+<td></td>
+</tr>
+<tr>
+<td>5.7</td>
+<td>Example</td>
+<td><code>isComp</code> instance for lists</td>
+<td><a
+href="tachis.tachis.examples.kway_merge.html">theories/tachis/examples/kway_merge.v</a></td>
+<td><code>Z_list_comparator</code></td>
+<td></td>
+</tr>
+<tr>
+<td>5.7</td>
+<td>Example</td>
+<td>k-way merge abstract specification</td>
+<td><a
+href="tachis.tachis.examples.kway_merge.html">theories/tachis/examples/kway_merge.v</a></td>
+<td><code>wp_merge</code></td>
+<td></td>
+</tr>
+<tr>
+<td>5.7</td>
+<td>Example</td>
+<td>Composed <code>O(n log k)</code> meldable heap merge</td>
+<td><a
+href="tachis.tachis.examples.kway_merge.html">theories/tachis/examples/kway_merge.v</a></td>
+<td><code>wp_meldable_merge</code></td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Definition</td>
+<td>Hoare triple</td>
+<td><a
+href="tachis.bi.weakestpre.html">theories/bi/weakestpre.v</a></td>
+<td>Defined as <code>Notations</code></td>
+<td></td>
+</tr>
+<tr>
+<td>6.1</td>
+<td>Definition</td>
+<td>Expected Cost modality</td>
+<td><a
+href="tachis.tachis.ert_weakestpre.html">theories/tachis/ert_weakestpre.v</a></td>
+<td><code>ERM</code></td>
+<td>See <code>ERM_unfold</code> for the equation at the start of
+6.1</td>
+</tr>
+<tr>
+<td>6.1</td>
+<td>Definition</td>
+<td>Weakest precondition</td>
+<td><a
+href="tachis.tachis.ert_weakestpre.html">theories/tachis/ert_weakestpre.v</a></td>
+<td><code>ert_wp</code></td>
+<td>See <code>ert_wp_unfold</code>, <code>ert_wp_pre</code> for the
+equation at the start of 6.1</td>
+</tr>
+<tr>
+<td>6.1</td>
+<td>Definition</td>
+<td>Cost credit resource algebra</td>
+<td><a
+href="tachis.tachis.expected_time_credits.html">theories/tachis/expected_time_credits.v</a></td>
+<td><code>etcGS</code></td>
+<td></td>
+</tr>
+<tr>
+<td>6.1</td>
+<td>Definition</td>
+<td>Cost interpretation</td>
+<td><a
+href="tachis.tachis.expected_time_credits.html">theories/tachis/expected_time_credits.v</a></td>
+<td><code>etc_supply</code></td>
+<td></td>
+</tr>
+<tr>
+<td>6.1</td>
+<td>Definition</td>
+<td>Cost budget</td>
+<td><a
+href="tachis.tachis.expected_time_credits.html">theories/tachis/expected_time_credits.v</a></td>
+<td><code>ec</code></td>
+<td><code>⧖ x</code> is notation in our development for
+<code>$ x</code></td>
+</tr>
+<tr>
+<td>6.1</td>
+<td>Rule</td>
+<td>Agreement Rule</td>
+<td><a
+href="tachis.tachis.expected_time_credits.html">theories/tachis/expected_time_credits.v</a></td>
+<td><code>etc_supply_bound</code></td>
+<td></td>
+</tr>
+<tr>
+<td>6.1</td>
+<td>Rule</td>
+<td>Spending Rule</td>
+<td><a
+href="tachis.tachis.expected_time_credits.html">theories/tachis/expected_time_credits.v</a></td>
+<td><code>etc_supply_decrease</code></td>
+<td></td>
+</tr>
+<tr>
+<td>6.1</td>
+<td>Rule</td>
+<td>Acquiring Rule</td>
+<td><a
+href="tachis.tachis.expected_time_credits.html">theories/tachis/expected_time_credits.v</a></td>
+<td><code>etc_supply_increase</code></td>
+<td></td>
+</tr>
+<tr>
+<td>6.2</td>
+<td>Theorem</td>
+<td>Adequacy (Weakest Preconditions)</td>
+<td><a
+href="tachis.tachis.adequacy.html">theories/tachis/adequacy.v</a></td>
+<td><code>wp_correct_lim</code></td>
+<td></td>
+</tr>
+<tr>
+<td>6.3</td>
+<td>Remark</td>
+<td>Finite <code>cost_app</code> cost implies AST</td>
+<td><a
+href="tachis.tachis.adequacy.html">theories/tachis/adequacy.v</a></td>
+<td><code>wp_ERT_ast'</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>

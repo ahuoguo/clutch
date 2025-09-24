@@ -1,0 +1,433 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link href="resources/coqdoc.css" rel="stylesheet" type="text/css" />
+<link href="resources/coqdocjs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resources/config.js"></script>
+<script type="text/javascript" src="resources/coqdocjs.js"></script>
+</head>
+
+<body onload="document.getElementById('content').focus()">
+  <div id="header">
+    <span class="left">
+      <span class="modulename"> <script> document.write(document.title) </script> </span>
+    </span>
+
+    <span class="button" id="toggle-proofs"></span>
+
+    <span class="right">
+      <a href="https://github.com/logsem/clutch">Project Page</a>
+      <a href="./indexpage.html"> Index </a>
+      <a href="./toc.html"> Table of Contents </a>
+    </span>
+</div>
+    <div id="content" tabindex="-1" onblur="document.getElementById('content').focus()">
+    <div id="main">
+<div id="toc">
+<h2><a href="discprob.prob.double.html">discprob.prob.double</a></h2>
+<h2><a href="discprob.prob.countable.html">discprob.prob.countable</a></h2>
+<h2><a href="discprob.prob.rearrange.html">discprob.prob.rearrange</a></h2>
+<h2><a href="discprob.basic.order.html">discprob.basic.order</a></h2>
+<h2><a href="discprob.basic.Series_Ext.html">discprob.basic.Series_Ext</a></h2>
+<h2><a href="discprob.basic.Reals_ext.html">discprob.basic.Reals_ext</a></h2>
+<h2><a href="discprob.basic.exp_ext.html">discprob.basic.exp_ext</a></h2>
+<h2><a href="discprob.basic.nify.html">discprob.basic.nify</a></h2>
+<h2><a href="discprob.basic.stdpp_ext.html">discprob.basic.stdpp_ext</a></h2>
+<h2><a href="discprob.basic.classic_proof_irrel.html">discprob.basic.classic_proof_irrel</a></h2>
+<h2><a href="discprob.basic.monad.html">discprob.basic.monad</a></h2>
+<h2><a href="discprob.basic.base.html">discprob.basic.base</a></h2>
+<h2><a href="discprob.basic.seq_ext.html">discprob.basic.seq_ext</a></h2>
+<h2><a href="discprob.basic.bigop_ext.html">discprob.basic.bigop_ext</a></h2>
+<h2><a href="discprob.basic.sval.html">discprob.basic.sval</a></h2>
+<h2><a href="tachis.prob.countable_sum.html">tachis.prob.countable_sum</a></h2>
+<h2><a href="tachis.prob.distribution.html">tachis.prob.distribution</a></h2>
+<ul class="doclist">
+<li><a href="tachis.prob.distribution.html#lab1">Sum-swapping equalities for distributions</a>
+
+</li>
+<li><a href="tachis.prob.distribution.html#lab2">Monadic return</a>
+
+</li>
+<li><a href="tachis.prob.distribution.html#lab3">Monadic bind</a>
+
+</li>
+<li><a href="tachis.prob.distribution.html#lab4">Lemmas about the interplay of monadic bind and return</a>
+
+</li>
+<li><a href="tachis.prob.distribution.html#lab5">Monadic map</a>
+
+</li>
+<li><a href="tachis.prob.distribution.html#lab6">Monadic strength</a>
+
+</li>
+<li><a href="tachis.prob.distribution.html#lab7">Monadic fold left</a>
+
+</li>
+<li><a href="tachis.prob.distribution.html#lab8">Monadic itereration</a>
+
+</li>
+<li><a href="tachis.prob.distribution.html#lab9">Coins</a>
+
+</li>
+<li><a href="tachis.prob.distribution.html#lab10">The zero distribution</a>
+
+</li>
+<li><a href="tachis.prob.distribution.html#lab11">Diagonal</a>
+
+</li>
+<li><a href="tachis.prob.distribution.html#lab12">Products</a>
+
+</li>
+<li><a href="tachis.prob.distribution.html#lab13">swap</a>
+
+</li>
+<li><a href="tachis.prob.distribution.html#lab14">Marginals</a>
+
+</li>
+<li><a href="tachis.prob.distribution.html#lab15">Pointwise order</a>
+
+</li>
+<li><a href="tachis.prob.distribution.html#lab16">Scaled distribution</a>
+
+</li>
+<li><a href="tachis.prob.distribution.html#lab17">Limit distribution</a>
+
+</li>
+<li><a href="tachis.prob.distribution.html#lab18">Uniform sampling</a>
+
+</li>
+</ul>
+<h2><a href="tachis.prob.graded_predicate_lifting.html">tachis.prob.graded_predicate_lifting</a></h2>
+<h2><a href="tachis.prob.couplings.html">tachis.prob.couplings</a></h2>
+<h2><a href="tachis.prob.markov.html">tachis.prob.markov</a></h2>
+<ul class="doclist">
+<li><a href="tachis.prob.markov.html#lab19">Markov Chains</a>
+
+</li>
+<li><a href="tachis.prob.markov.html#lab20">Strict partial evaluation</a>
+
+</li>
+<li><a href="tachis.prob.markov.html#lab21">Non-strict partial evaluation</a>
+
+</li>
+<li><a href="tachis.prob.markov.html#lab22">Stratified evaluation to a final state</a>
+
+</li>
+<li><a href="tachis.prob.markov.html#lab23">Full evaluation (limit of stratification)</a>
+
+</li>
+<li><a href="tachis.prob.markov.html#lab24">Iterated Markov chain</a>
+
+</li>
+<li><a href="tachis.prob.markov.html#lab25">Ranking Supermartingales</a>
+
+</li>
+</ul>
+<h2><a href="tachis.prob.couplings_app.html">tachis.prob.couplings_app</a></h2>
+<h2><a href="tachis.common.exec.html">tachis.common.exec</a></h2>
+<ul class="doclist">
+<li><a href="tachis.common.exec.html#lab26">strengthen this lemma?</a>
+
+</li>
+<li><a href="tachis.common.exec.html#lab27">strengthen this lemma?</a>
+
+</li>
+<li><a href="tachis.common.exec.html#lab28">strengthen lemma?</a>
+
+</li>
+</ul>
+<h2><a href="tachis.common.erasable.html">tachis.common.erasable</a></h2>
+<h2><a href="tachis.common.ectxi_language.html">tachis.common.ectxi_language</a></h2>
+<h2><a href="tachis.common.inject.html">tachis.common.inject</a></h2>
+<h2><a href="tachis.common.ectx_language.html">tachis.common.ectx_language</a></h2>
+<ul class="doclist">
+<li><a href="tachis.common.ectx_language.html#lab29">Some lemmas about this language</a>
+
+</li>
+</ul>
+<h2><a href="tachis.common.language.html">tachis.common.language</a></h2>
+<h2><a href="tachis.tachis.adequacy.html">tachis.tachis.adequacy</a></h2>
+<h2><a href="tachis.tachis.problang_wp.html">tachis.tachis.problang_wp</a></h2>
+<h2><a href="tachis.tachis.cost_models.html">tachis.tachis.cost_models</a></h2>
+<ul class="doclist">
+<li><a href="tachis.tachis.cost_models.html#lab30">Cost models</a>
+<ul class="doclist">
+<li><a href="tachis.tachis.cost_models.html#lab31">Cost <span class="inlinecode">1</span> for all steps</a>
+
+</li>
+<li><a href="tachis.tachis.cost_models.html#lab32">Cost <span class="inlinecode">1</span> model for <span class="inlinecode"><span class="id" title="var">rand</span></span></a>
+
+</li>
+<li><a href="tachis.tachis.cost_models.html#lab33">Entropy cost model for <span class="inlinecode"><span class="id" title="var">rand</span></span></a>
+
+</li>
+<li><a href="tachis.tachis.cost_models.html#lab34">Cost <span class="inlinecode"><span class="id" title="var">n</span></span> for <span class="inlinecode"><span class="id" title="var">tick</span></span> <span class="inlinecode"><span class="id" title="var">n</span></span></a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="tachis.tachis.ert_weakestpre.html">tachis.tachis.ert_weakestpre</a></h2>
+<ul class="doclist">
+<li><a href="tachis.tachis.ert_weakestpre.html#lab35">The expected runtime modality <span class="inlinecode"><span class="id" title="var">ERM</span></span></a>
+
+</li>
+<li><a href="tachis.tachis.ert_weakestpre.html#lab36">The weakest precondition</a>
+
+</li>
+<li><a href="tachis.tachis.ert_weakestpre.html#lab37">Derived rules</a>
+
+</li>
+</ul>
+<h2><a href="tachis.tachis.examples.geometric.html">tachis.tachis.examples.geometric</a></h2>
+<ul class="doclist">
+<li><a href="tachis.tachis.examples.geometric.html#lab38">Simple Geometric Example</a>
+
+</li>
+</ul>
+<h2><a href="tachis.tachis.examples.race.html">tachis.tachis.examples.race</a></h2>
+<h2><a href="tachis.tachis.examples.fisher_yates.html">tachis.tachis.examples.fisher_yates</a></h2>
+<h2><a href="tachis.tachis.examples.hashmap.hash.html">tachis.tachis.examples.hashmap.hash</a></h2>
+<ul class="doclist">
+<li><a href="tachis.tachis.examples.hashmap.hash.html#lab39">Hash</a>
+
+</li>
+</ul>
+<h2><a href="tachis.tachis.examples.hashmap.map.html">tachis.tachis.examples.hashmap.map</a></h2>
+<h2><a href="tachis.tachis.examples.hashmap.linkedlist.html">tachis.tachis.examples.hashmap.linkedlist</a></h2>
+<ul class="doclist">
+<li><a href="tachis.tachis.examples.hashmap.linkedlist.html#lab40">library for linkedlist specific for hashmap</a>
+
+</li>
+</ul>
+<h2><a href="tachis.tachis.examples.hashmap.hashmap.html">tachis.tachis.examples.hashmap.hashmap</a></h2>
+<ul class="doclist">
+<li><a href="tachis.tachis.examples.hashmap.hashmap.html#lab41">Hashmap</a>
+
+</li>
+</ul>
+<h2><a href="tachis.tachis.examples.min_heap_spec.html">tachis.tachis.examples.min_heap_spec</a></h2>
+<h2><a href="tachis.tachis.examples.kway_merge.html">tachis.tachis.examples.kway_merge</a></h2>
+<ul class="doclist">
+<li><a href="tachis.tachis.examples.kway_merge.html#lab42">A <span class="inlinecode">≤</span> head comparator for lists of intergers</a>
+
+</li>
+</ul>
+<h2><a href="tachis.tachis.examples.amortized_op.html">tachis.tachis.examples.amortized_op</a></h2>
+<ul class="doclist">
+<li><a href="tachis.tachis.examples.amortized_op.html#lab43">Batz. et al 2023 (POPL 2023), Example 5.7</a>
+
+</li>
+</ul>
+<h2><a href="tachis.tachis.examples.couponcollector.html">tachis.tachis.examples.couponcollector</a></h2>
+<ul class="doclist">
+<li><a href="tachis.tachis.examples.couponcollector.html#lab44">Exact time credit accounting for Coupon collecting</a>
+
+</li>
+</ul>
+<h2><a href="tachis.tachis.examples.simple_loops.html">tachis.tachis.examples.simple_loops</a></h2>
+<h2><a href="tachis.tachis.examples.quicksort.html">tachis.tachis.examples.quicksort</a></h2>
+<ul class="doclist">
+<li><a href="tachis.tachis.examples.quicksort.html#lab45">Exact time credit accounting for Quicksort</a>
+
+</li>
+</ul>
+<h2><a href="tachis.tachis.examples.batchsampling.html">tachis.tachis.examples.batchsampling</a></h2>
+<ul class="doclist">
+<li><a href="tachis.tachis.examples.batchsampling.html#lab46">Batch Sampling</a>
+
+</li>
+</ul>
+<h2><a href="tachis.tachis.examples.lib.list.html">tachis.tachis.examples.lib.list</a></h2>
+<ul class="doclist">
+<li><a href="tachis.tachis.examples.lib.list.html#lab47">Functional list in the <span class="inlinecode"><span class="id" title="var">CostTick</span></span> cost model</a>
+
+</li>
+</ul>
+<h2><a href="tachis.tachis.examples.meldable_heap.html">tachis.tachis.examples.meldable_heap</a></h2>
+<ul class="doclist">
+<li><a href="tachis.tachis.examples.meldable_heap.html#lab48">Meldable Heaps</a>
+
+</li>
+</ul>
+<h2><a href="tachis.tachis.lifting.html">tachis.tachis.lifting</a></h2>
+<h2><a href="tachis.tachis.primitive_laws.html">tachis.tachis.primitive_laws</a></h2>
+<h2><a href="tachis.tachis.proofmode.html">tachis.tachis.proofmode</a></h2>
+<h2><a href="tachis.tachis.ert_rules.html">tachis.tachis.ert_rules</a></h2>
+<ul class="doclist">
+<li><a href="tachis.tachis.ert_rules.html#lab49">ERT rules</a>
+
+</li>
+</ul>
+<h2><a href="tachis.tachis.ectx_lifting.html">tachis.tachis.ectx_lifting</a></h2>
+<h2><a href="tachis.tachis.derived_laws.html">tachis.tachis.derived_laws</a></h2>
+<ul class="doclist">
+<li><a href="tachis.tachis.derived_laws.html#lab50">Rules for allocation</a>
+
+</li>
+<li><a href="tachis.tachis.derived_laws.html#lab51">Rules for accessing array elements</a>
+
+</li>
+</ul>
+<h2><a href="tachis.tachis.expected_time_credits.html">tachis.tachis.expected_time_credits</a></h2>
+<ul class="doclist">
+<li><ul class="doclist">
+<li><a href="tachis.tachis.expected_time_credits.html#lab52">Non-negative real numbers with addition as the operation.</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="tachis.bi.weakestpre.html">tachis.bi.weakestpre</a></h2>
+<h2><a href="tachis.prelude.NNRbar.html">tachis.prelude.NNRbar</a></h2>
+<ul class="doclist">
+<li><a href="tachis.prelude.NNRbar.html#lab53">Definitions</a>
+<ul class="doclist">
+<li><a href="tachis.prelude.NNRbar.html#lab54">Order</a>
+
+</li>
+<li><a href="tachis.prelude.NNRbar.html#lab55">Operations</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="tachis.prelude.NNRbar.html#lab58">Compatibility with real numbers</a>
+
+</li>
+<li><a href="tachis.prelude.NNRbar.html#lab59">Properties of order</a>
+<ul class="doclist">
+<li><a href="tachis.prelude.NNRbar.html#lab60">Relations between inequalities</a>
+
+</li>
+<li><a href="tachis.prelude.NNRbar.html#lab61">Decidability</a>
+
+</li>
+<li><a href="tachis.prelude.NNRbar.html#lab62">Transitivity</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="tachis.prelude.NNRbar.html#lab63">Properties of operations</a>
+<ul class="doclist">
+<li><a href="tachis.prelude.NNRbar.html#lab64">Additive operators</a>
+
+</li>
+<li><a href="tachis.prelude.NNRbar.html#lab66">Multiplicative</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="tachis.prelude.NNRbar.html#lab69">NNRbar_min</a>
+
+</li>
+</ul>
+<h2><a href="tachis.prelude.properness.html">tachis.prelude.properness</a></h2>
+<h2><a href="tachis.prelude.Series_ext.html">tachis.prelude.Series_ext</a></h2>
+<h2><a href="tachis.prelude.Reals_ext.html">tachis.prelude.Reals_ext</a></h2>
+<h2><a href="tachis.prelude.fin.html">tachis.prelude.fin</a></h2>
+<h2><a href="tachis.prelude.stdpp_ext.html">tachis.prelude.stdpp_ext</a></h2>
+<ul class="doclist">
+<li><ul class="doclist">
+<li><a href="tachis.prelude.stdpp_ext.html#lab70"><span class="inlinecode"><span class="id" title="var">nat_to_bool</span></span></a>
+
+</li>
+<li><a href="tachis.prelude.stdpp_ext.html#lab71"><span class="inlinecode"><span class="id" title="var">Z_to_bool</span></span></a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<h2><a href="tachis.prelude.uniform_list.html">tachis.prelude.uniform_list</a></h2>
+<h2><a href="tachis.prelude.base.html">tachis.prelude.base</a></h2>
+<h2><a href="tachis.prelude.mc_stdlib.html">tachis.prelude.mc_stdlib</a></h2>
+<h2><a href="tachis.prelude.iris_ext.html">tachis.prelude.iris_ext</a></h2>
+<h2><a href="tachis.prelude.zmodp_fin.html">tachis.prelude.zmodp_fin</a></h2>
+<h2><a href="tachis.prelude.classical.html">tachis.prelude.classical</a></h2>
+<h2><a href="tachis.prelude.Coquelicot_ext.html">tachis.prelude.Coquelicot_ext</a></h2>
+<h2><a href="tachis.prob_lang.class_instances.html">tachis.prob_lang.class_instances</a></h2>
+<ul class="doclist">
+<li><a href="tachis.prob_lang.class_instances.html#lab72">Instances of the <span class="inlinecode"><span class="id" title="var">Atomic</span></span> class</a>
+
+</li>
+<li><a href="tachis.prob_lang.class_instances.html#lab73">Instances of the <span class="inlinecode"><span class="id" title="var">PureExec</span></span> class</a>
+
+</li>
+</ul>
+<h2><a href="tachis.prob_lang.lang.html">tachis.prob_lang.lang</a></h2>
+<h2><a href="tachis.prob_lang.notation.html">tachis.prob_lang.notation</a></h2>
+<h2><a href="tachis.prob_lang.erasure.html">tachis.prob_lang.erasure</a></h2>
+<h2><a href="tachis.prob_lang.locations.html">tachis.prob_lang.locations</a></h2>
+<h2><a href="tachis.prob_lang.metatheory.html">tachis.prob_lang.metatheory</a></h2>
+<ul class="doclist">
+<li><a href="tachis.prob_lang.metatheory.html#lab74">rand(N) ~ rand(N) coupling</a>
+
+</li>
+<li><a href="tachis.prob_lang.metatheory.html#lab75">rand(N, α1) ~ rand(N, α2) coupling, "wrong" N</a>
+
+</li>
+<li><a href="tachis.prob_lang.metatheory.html#lab76">rand(N,α) ~ rand(N) coupling, "wrong" N</a>
+
+</li>
+<li><a href="tachis.prob_lang.metatheory.html#lab77">rand(N) ~ rand(N, α) coupling, "wrong" N</a>
+
+</li>
+<li><a href="tachis.prob_lang.metatheory.html#lab78">state_step(α, N) ~ state_step(α', N) coupling</a>
+
+</li>
+<li><a href="tachis.prob_lang.metatheory.html#lab79">Generalized state_step(α) ~ state_step(α') coupling</a>
+
+</li>
+<li><a href="tachis.prob_lang.metatheory.html#lab80">rand(unit, N) ~ state_step(α', N) coupling</a>
+
+</li>
+<li><a href="tachis.prob_lang.metatheory.html#lab81">state_step(α, N) ~ rand(unit, N) coupling</a>
+
+</li>
+<li><a href="tachis.prob_lang.metatheory.html#lab82">e1 ~ rand(α', N) coupling for α' ↪ₛ (N, <font size=-2>&#9744;</font>)</a>
+
+</li>
+<li><a href="tachis.prob_lang.metatheory.html#lab83">Approximate rand(N) ~ rand(M) coupling, N &lt;= M</a>
+
+</li>
+<li><a href="tachis.prob_lang.metatheory.html#lab84">Approximate rand(N) ~ rand(M) coupling, N &lt;= M, along an injection</a>
+
+</li>
+<li><a href="tachis.prob_lang.metatheory.html#lab85">Approximate rand(N) ~ rand(M) coupling, M &lt;= N</a>
+
+</li>
+<li><a href="tachis.prob_lang.metatheory.html#lab86">Approximate rand(N) ~ rand(M) coupling, M &lt;= N, along an injection</a>
+
+</li>
+<li><a href="tachis.prob_lang.metatheory.html#lab87">Approximate state_step(α, N) ~ state_step(α', N) coupling</a>
+
+</li>
+<li><a href="tachis.prob_lang.metatheory.html#lab88">a coupling between rand n and rand n avoiding results from a list</a>
+
+</li>
+<li><a href="tachis.prob_lang.metatheory.html#lab89">state_step ~ fair_coin</a>
+
+</li>
+<li><a href="tachis.prob_lang.metatheory.html#lab90">state_step ≫= state_step ~ dprod fair_coin fair_coin</a>
+
+</li>
+</ul>
+<h2><a href="tachis.prob_lang.tactics.html">tachis.prob_lang.tactics</a></h2>
+<h2><a href="tachis.prob_lang.exec_lang.html">tachis.prob_lang.exec_lang</a></h2>
+<h2><a href="tachis.prob_lang.wp_tactics.html">tachis.prob_lang.wp_tactics</a></h2>
+</div>
+</div>
+<div id="footer">
+  Generated by <a href="http://coq.inria.fr/">coqdoc</a> and improved with <a href="https://github.com/coq-community/coqdocjs">CoqdocJS</a>
+</div>
+</div>
+</body>
+
+</html>
