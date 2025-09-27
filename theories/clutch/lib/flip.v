@@ -3,6 +3,12 @@ From stdpp Require Import namespaces.
 From iris.proofmode Require Import
   coq_tactics ltac_tactics sel_patterns environments reduction proofmode.
 From clutch Require Import clutch clutch.lib.conversion.
+From clutch.common Require Import exec.
+
+(* TODO: importing the following will cause chaos *)
+(* From clutch.prob Require Import distribution. *)
+(* From Coquelicot Require Import Rcomplements Rbar Lim_seq. *)
+
 
 Definition flipL : val := λ: "e", int_to_bool (rand("e") #1%nat).
 Definition flip : expr := (flipL #()).
@@ -487,3 +493,31 @@ Tactic Notation "rel_flipL_r" :=
   |rel_finish  (** new goal *)].
 
 Global Opaque tapeB.
+
+Lemma lim_exec_val_rand σ:
+  lim_exec_val ((rand(#()) #1%nat)%E, σ) #0 = (1/2)%R.
+Proof.
+  rewrite lim_exec_val_rw.
+  rewrite mon_sup_succ.
+  - erewrite <-sup_seq_const. do 2 f_equal. apply functional_extensionality_dep.
+    intros n. simpl. rewrite head_prim_step_eq => /=.
+Admitted.
+
+
+Lemma lim_exec_rand σ :
+  lim_exec ((rand(#()) #1%nat)%E, σ) #0 = (1/2)%R.
+Proof.
+  (* TODO: why does this work?? *)
+  apply (lim_exec_val_rand σ).
+Qed.
+
+
+Lemma lim_exec_flip σ :
+  lim_exec (flip, σ) #false = (1/2)%R.
+Proof.
+  rewrite /flip/flipL.
+  erewrite (lim_exec_term 10).
+  - simpl.
+    rewrite /int_to_bool.
+    admit.
+Admitted.
