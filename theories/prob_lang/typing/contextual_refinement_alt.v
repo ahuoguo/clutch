@@ -287,7 +287,7 @@ Lemma lim_exec_val_of_val_true_one (e : expr) σ :
   e = #true →
   lim_exec_val ((if: e then #() else loop)%E, σ) (#()) = 1.
 Proof.
-intros ->.
+  intros ->.
   rewrite lim_exec_val_rw.
   rewrite mon_sup_succ.
   - erewrite <-sup_seq_const. do 2 f_equal. apply functional_extensionality_dep.
@@ -436,3 +436,17 @@ Proof.
     rewrite /K' /=.
     by do 2 rewrite -alt_impl_ctx_refines_loop_lemma.
 Qed.
+
+Lemma lim_exec_val_rand σ:
+  lim_exec_val ((rand(#()) #1%nat)%E, σ) #3 = 0.
+Proof.
+  rewrite lim_exec_val_rw.
+  rewrite mon_sup_succ.
+  - erewrite <-sup_seq_const. do 2 f_equal. apply functional_extensionality_dep.
+  (* TODO: what is this `=>` for? Doesnt' seem to have any effect? *)
+    intros n. simpl. rewrite head_prim_step_eq => /=.
+    rewrite /dmap /dunifP.
+    assert ( (S (Z.to_nat 1%nat)) = 2%nat) as H by done.
+    rewrite H.
+    rewrite dunif_fair_conv_comb.
+Admitted.
