@@ -109,6 +109,7 @@ Section exec_val.
   Implicit Types v : val Λ.
   Implicit Types σ : state Λ.
 
+  (* TODO: what is this `{struct n}` *)
   Fixpoint exec_val (n : nat) (ρ : cfg Λ) {struct n} : distr (val Λ) :=
     match to_val ρ.1, n with
       | Some v, _ => dret v

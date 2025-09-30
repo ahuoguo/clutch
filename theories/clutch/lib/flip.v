@@ -500,24 +500,81 @@ Proof.
   rewrite lim_exec_val_rw.
   rewrite mon_sup_succ.
   - erewrite <-sup_seq_const. do 2 f_equal. apply functional_extensionality_dep.
+    (* TODO: what is this `=>` for? Doesnt' seem to have any effect? *)
     intros n. simpl. rewrite head_prim_step_eq => /=.
-Admitted.
+    rewrite /dmap /dunifP.
+    assert ( (S (Z.to_nat 1%nat)) = 2%nat) as H by done.
+    rewrite H.
+    rewrite -dbind_assoc -/exec_val.
+    rewrite {1}/dbind/pmf/dbind_pmf.
+    f_equal. rewrite SeriesC_scal_l. (* oh shit this is really cool... *)
+    setoid_rewrite dret_id_left. (* TODO: make sure when to use setoid rewrite... *)
+
+    assert (SeriesC (λ x : fin 2, exec_val n (Val #x, σ) #0) = 1%R).
+    * rewrite SeriesC_fin2.
+      do 2 (erewrite exec_val_is_val; auto).
+      do 2 rewrite dret_pmf_unfold.
+      case_bool_decide; auto.
+      -- case_bool_decide.
+      --- inversion H1.
+      --- real_solver.
+      -- case_bool_decide; auto.
+      --- inversion H1.
+      --- done. (* TODO: wait how is this solved by done??? *)
+    * rewrite H0. real_solver.
+  - intro. apply exec_val_mon.
+Qed.
+
+Lemma lim_exec_val_rand_3 σ:
+  lim_exec_val ((rand(#()) #1%nat)%E, σ) #3 = 0.
+Proof.
+  rewrite lim_exec_val_rw.
+  rewrite mon_sup_succ.
+  - erewrite <-sup_seq_const. do 2 f_equal. apply functional_extensionality_dep.
+    (* TODO: what is this `=>` for? Doesnt' seem to have any effect? *)
+    intros n. simpl. rewrite head_prim_step_eq => /=.
+    rewrite /dmap /dunifP.
+    assert ( (S (Z.to_nat 1%nat)) = 2%nat) as H by done.
+    rewrite H.
+    rewrite -dbind_assoc -/exec_val.
+    rewrite {1}/dbind/pmf/dbind_pmf.
+    f_equal. apply SeriesC_0. intros x.
+    rewrite dret_id_left => /=.
+    replace (exec_val _ _ _) with 0%R; [lra|].
+    erewrite exec_val_is_val; auto.
+    rewrite dret_pmf_unfold.
+    case_bool_decide; auto.
+    inversion H0.
+    exfalso.
+    assert (fin_to_nat x < 2)%nat as Hlt.
+    { 
+      (* TODO: importing this globally will break things.. *)
+      From stdpp Require Import fin.
+      apply fin_to_nat_lt. 
+    }
+    lia.
+  - intro. apply exec_val_mon.
+    (* rewrite (SeriesC_split_pred _ (λ x, bool_decide (x.2=0%nat))); last first. *)
+Qed.
 
 
 Lemma lim_exec_rand σ :
   lim_exec ((rand(#()) #1%nat)%E, σ) #0 = (1/2)%R.
 Proof.
-  (* TODO: why does this work?? *)
   apply (lim_exec_val_rand σ).
 Qed.
 
-
 Lemma lim_exec_flip σ :
-  lim_exec (flip, σ) #false = (1/2)%R.
+  lim_exec_val ((flipL #())%E, σ) #true = (1/2)%R.
 Proof.
-  rewrite /flip/flipL.
-  erewrite (lim_exec_term 10).
-  - simpl.
-    rewrite /int_to_bool.
+  rewrite /flipL.
+  rewrite /int_to_bool.
+  rewrite lim_exec_val_rw.
+  rewrite mon_sup_succ.
+  - erewrite <-sup_seq_const. do 2 f_equal. apply functional_extensionality_dep.
+    intros n. simpl. rewrite head_prim_step_eq => /=.
+    (* TODO: not sure how to proceed *)
     admit.
+  - intro. apply exec_val_mon.
 Admitted.
+
