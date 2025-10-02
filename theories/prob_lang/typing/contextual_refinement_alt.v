@@ -287,7 +287,7 @@ Lemma lim_exec_val_of_val_true_one (e : expr) σ :
   e = #true →
   lim_exec_val ((if: e then #() else loop)%E, σ) (#()) = 1.
 Proof.
-intros ->.
+  intros ->.
   rewrite lim_exec_val_rw.
   rewrite mon_sup_succ.
   - erewrite <-sup_seq_const. do 2 f_equal. apply functional_extensionality_dep.
@@ -406,8 +406,7 @@ Proof.
          f_equal. apply SeriesC_0. intros [??].
          rewrite dret_id_left => /=.
          replace (exec_val _ _ _) with 0; [lra|].
-         do 2 f_equal.
-         rewrite <- Rbar_finite_eq.
+         rewrite -Rbar_finite_eq.
          by rewrite IHn.
 Qed.
 
