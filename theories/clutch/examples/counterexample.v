@@ -1,4 +1,8 @@
-From clutch Require Export clutch clutch.lib.flip.
+From stdpp Require Export stringmap fin_map_dom gmap.
+From clutch Require Export clutch clutch.lib.flip clutch.lib.conversion.
+From clutch.common Require Import exec.
+From clutch.prob_lang.typing Require Import tychk.
+
 Set Default Proof Using "Type*".
 
 (** If we assume that we can freely pick presampling tapes to read from when
@@ -15,11 +19,34 @@ Section counterexample_annotation.
     (α ↪B bs -∗  REL fill K (of_val #b) << e' @ E : A)
     ⊢ REL fill K flip << e' @ E : A.
 
+  Definition refines_tape_unsound':
+    ∀ K E (A : lrel Σ) α b bs e',
+    α ↪B (b :: bs) ∗
+    (α ↪B bs -∗  REL fill K (of_val #b) << e' @ E : A)
+    ⊢ REL fill K flip << e' @ E : A.
+  Proof.
+  Admitted.
+
   (** [flip_ors] return [true] with probability 3/4, false with 1/4 *)
   Definition flip_ors : expr :=
     let: "x" := flip in
     let: "y" := flip in
     "x" || "y".
+  
+  (* Definition flip_ors_tape : expr :=
+    let: "x" := flip in
+    let: "y" := flip in
+    "x" || "y". *)
+  
+  Definition flip_tape : expr :=
+    let: "α" := allocB in
+    let: "β" := allocB in
+    flip.
+
+  Definition flip_and : expr :=
+    let: "x" := flip in
+    let: "y" := flip in
+    "x" && "y".
 
   (** If we assume [refines_tape_unsound], we can show that [flip] refines
       [flip_ors] which obviously cannot true. *)
@@ -41,8 +68,131 @@ Section counterexample_annotation.
     - rel_apply (refines_tape_unsound _ _ _ α2).
       iFrame. iIntros "Hα2". rel_values.
   Qed.
+  
+  Lemma counterexample_annotation_tape :
+    ⊢ REL flip_tape << flip_ors : lrel_bool.  
+  Proof.
+    rewrite /flip_tape.
+    rel_allocBtape_l α as "Hα".
+    rel_allocBtape_l β as "Hβ".
+    rel_pures_l.
+    rel_pures_r.
+    rewrite -/flip.
+    iApply counterexample_annotation.
+    - rewrite /refines_tape_unsound. apply refines_tape_unsound'.
+    - iFrame.
+  Qed.
+
+  Lemma lazy_lazy_with_tape_rel :
+    ⊢ REL flip_tape << flip : lrel_bool.
+    (* TODO: can you use erasure theorem *)
+  Proof.
+    rewrite /flip_tape /flip.
+    rel_allocBtape_l α as "Hα".
+    rel_allocBtape_l β as "Hβ".
+    rel_pures_l.
+    rel_apply refines_couple_flip_flip.
+    iNext.
+    iIntros.
+    rel_values.
+  Qed.
+
+  Lemma int_to_bool_typed:
+    ∅ ⊢ₜ int_to_bool : (TInt → TBool).
+  Proof.
+    (* Set Printing All. *)
+    unfold int_to_bool.
+    tychk.
+  Qed.
+
+  Lemma flipL_syn_typed :
+    ∅ ⊢ₜ flip : TBool.
+  Proof.
+      unfold flip, flipL.
+      econstructor.
+      2: tychk.
+      do 3 econstructor.
+      2: tychk.
+      econstructor.
+      econstructor.
+      econstructor; first last.
+      + tychk.
+      + tychk.
+      + econstructor; first last.
+        * constructor.
+        * tychk.
+        * eapply Subsume_int_nat. tychk.
+  Qed.
+
+  Lemma lazy_lazy_with_tape_rel_alt_proof :
+    ⊢ REL flip_tape << flip : lrel_bool.
+  Proof.
+    rewrite /flip_tape /flip.
+    rel_allocBtape_l α as "Hα".
+    rel_allocBtape_l β as "Hβ".
+    rel_pures_l.
+    assert (lrel_bool = interp TBool []).
+    - simpl. done.
+    - rewrite H.
+      iApply refines_typed.
+      apply flipL_syn_typed.
+  Qed.
+
+    
+    
+
+  Lemma counterexample_annotation_alt α1 α2 :
+    refines_tape_unsound →
+    α1 ↪B [] ∗ α2 ↪B []
+    ⊢ REL flip << flip_and : lrel_bool.
+  Proof.
+    iIntros (refines_tape_unsound) "[Hα1 Hα2]". rewrite /flip_and.
+    rel_apply (refines_couple_tape_flip _ _ α1); iFrame.
+    iIntros (b1) "Hα1 /=".
+    rel_pures_r.
+    rel_apply (refines_couple_tape_flip _ _ α2); iFrame.
+    iIntros (b2) "Hα2 /=".
+    rel_pures_r.
+    destruct b1; rel_pures_r.
+    - rel_apply (refines_tape_unsound _ _ _ α2).
+      iFrame. iIntros "Hα2". rel_values.
+    - rel_apply (refines_tape_unsound _ _ _ α1).
+      iFrame. iIntros "Hα1". rel_values.
+  Qed.
 
 End counterexample_annotation.
+
+Lemma counter_example_bad_refinement `{!clutchRGS Σ} :
+  ∅ ⊨ flip_tape ≤ctx≤ flip_ors : TBool.
+Proof.
+  eapply (refines_sound clutchRΣ). intros.
+  simpl.
+  apply counterexample_annotation_tape.
+Qed.
+
+
+
+Lemma bad `{!clutchRGS Σ} :
+  (∅ ⊨ flip ≤ctx≤ flip_ors : TBool) -> False.
+Proof.
+  intros H.
+  unfold ctx_refines in H.
+  set (σ0 := {| heap := gmap_empty; tapes := gmap_empty; |}).
+  specialize (H [] σ0 false).
+  simpl in H.
+  destruct H.
+  - econstructor.
+  - rewrite /flip /flip_ors in H.
+    admit.
+    (* apply Sup_seq_ext in H.
+    destruct H as [H|H].
+    - apply H.
+    - apply H. *)
+  - admit.
+    (* rewrite /flip /flip_ors in H.
+    rewrite lim_exec_unfold in H.
+    rewrite lim_exec_unfold in H. *)
+Admitted.
 
 (** This counterexample shows that prophecy variables (as developed in HeapLang
     and Iris) is unsound for the coupling logic, for the same reason that
